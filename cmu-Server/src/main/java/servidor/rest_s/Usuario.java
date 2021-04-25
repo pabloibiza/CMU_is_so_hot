@@ -81,10 +81,6 @@ public class Usuario implements Serializable {
     public int hashCode() {
         int hash = 3;
         hash = 29 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 29 * hash + (this.admin ? 1 : 0);
-        hash = 29 * hash + Objects.hashCode(this.contrasena);
-        hash = 29 * hash + Objects.hashCode(this.nombre);
-        hash = 29 * hash + Objects.hashCode(this.planta);
         return hash;
     }
 
