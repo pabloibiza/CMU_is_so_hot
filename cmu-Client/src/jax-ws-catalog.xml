@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://155.210.71.106:8080/cmu-Server/CMUService?WSDL" uri="wsdl/155.210.71.106_8080/cmu-Server/CMUService.wsdl"/>
+    <system systemId="http://155.210.71.106:8080/cmu-Server/CMUService?xsd=1" uri="wsdl/155.210.71.106_8080/cmu-Server/CMUService.xsd_1.xsd"/>
+</catalog>
