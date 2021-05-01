@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servidor.rest_s.service;
+package servidor.bd;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -12,11 +12,11 @@ import javax.persistence.EntityManager;
  *
  * @author karlo
  */
-public abstract class UniversalFacade<T> {
-    
+public abstract class AbstractFacade<T> {
+
     private Class<T> entityClass;
 
-    public UniversalFacade(Class<T> entityClass) {
+    public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
 
