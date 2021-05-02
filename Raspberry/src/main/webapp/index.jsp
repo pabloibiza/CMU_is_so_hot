@@ -5,16 +5,16 @@
 --%>
 
 <%@page import="raspi.util.Time"%>
-<%@page import="raspi.ejb.Medicion"%>
+<%@page import="raspi.ejb.Raspberry"%>
 <%@page import="raspi.ejb.Sonoff"%>
 
 <%@page import="javax.naming.InitialContext"%>
  <%
     Sonoff sonoff = null;
-    Medicion rpi = null;
+    Raspberry rpi = null;
     InitialContext ic = new InitialContext();
     sonoff  = (Sonoff)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Sonoff");
-    rpi     = (Medicion)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Raspberry");
+    rpi     = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Raspberry");
     
     String onDisabled   = "";
     String offDisabled  = "";
@@ -48,10 +48,7 @@ body {font-family: "Lato", sans-serif; font-size: 12px;}
         <h1>MQTT demo 27/04/2020 - v0.4</h1>
         <hr>
         versión síncrona
-        <br>
-        <br>
-        <br>
-        <a href="index.jsp">RECARGAR Página</a>
+        
         <br>
         <br>
         <table>
@@ -91,8 +88,7 @@ body {font-family: "Lato", sans-serif; font-size: 12px;}
                 <td valign="top">
                     <fieldset>
                         <legend>Raspberry:</legend>
-                        
-                        <br>
+                        <b><div style="font-size: 18px;"><%=rpi.getFecha()%></div></b>
                         <table>
                             <tr>
                                 <td colspan="2" align="center">
@@ -107,6 +103,9 @@ body {font-family: "Lato", sans-serif; font-size: 12px;}
                             <tr>
                                 <td>Presión:</td>
                                 <td align="center"><b><div style="font-size: 18px;"><%=rpi.getPress()%> HPa</div></b></td>
+                            </tr>
+                            <tr>
+                                <td><a href="index.jsp">Ultima lectura</a></td>
                             </tr>
                         </table>
 

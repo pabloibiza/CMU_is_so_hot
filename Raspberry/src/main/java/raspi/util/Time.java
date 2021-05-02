@@ -18,6 +18,11 @@ import java.util.Date;
 public class Time {
     
     
+    public Date getDate(){
+        Date fecha = new Date();
+        return fecha;
+    }
+    
     public static String getHHMMSS (long _ms){
         Calendar c = Calendar.getInstance();
         c.setTimeInMillis(_ms);

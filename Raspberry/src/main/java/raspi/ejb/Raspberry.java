@@ -5,6 +5,7 @@ De momento solo se considera la temperatura de su CPU.
 package raspi.ejb;
 
 import com.google.gson.Gson;
+import java.util.Date;
 import javax.ejb.Stateless;
 
 /**
@@ -12,9 +13,10 @@ import javax.ejb.Stateless;
  * @author fsern, pablo
  */
 @Stateless
-public class Medicion {
+public class Raspberry {
     private String  temp;  // tª del BMP280
     private String  press;  // del BMP280
+    private Date fecha;
 
     public String getTemp() {
         return temp;
@@ -31,8 +33,20 @@ public class Medicion {
     public void setPress(String press) {
         this.press = press;
     }
-   
 
-   
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    @Override
+    public String toString() {
+        return "{\"temp\":"+temp+",\"fecha\":"+fecha+",\"press\":"+press+",\"fecha\":"+fecha+"}";
+    }
+    
+    
     
 }

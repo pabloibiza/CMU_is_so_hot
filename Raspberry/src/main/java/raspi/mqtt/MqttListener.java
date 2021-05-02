@@ -6,7 +6,8 @@
 package raspi.mqtt;
 
 
-import raspi.ejb.Medicion;
+import java.util.Date;
+import raspi.ejb.Raspberry;
 import raspi.ejb.Sonoff;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.naming.NamingException;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import raspi.util.Time;
 
 /**
  *
@@ -23,14 +25,14 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class MqttListener implements MqttCallback {
 
     private Sonoff sonoff;
-    private Medicion rpi;
+    private Raspberry rpi;
     
     
     public MqttListener(){
         try {
             InitialContext ic = new InitialContext();
             sonoff  = (Sonoff)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Sonoff");
-            rpi     = (Medicion)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Raspberry");
+            rpi     = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Raspberry");
         } catch (NamingException ex) {
             Logger.getLogger(MqttListener.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -54,10 +56,14 @@ public class MqttListener implements MqttCallback {
                 
             case Topic.TOPIC_RASPI_TEMP:
                 rpi.setTemp(payload);
+                Time time_temp = new Time();
+                rpi.setFecha(time_temp.getDate());
                 break;
                 
             case Topic.TOPIC_RASPI_PRESS:
                 rpi.setPress(payload);
+                Time time_press = new Time();
+                rpi.setFecha(time_press.getDate());
                 break;
 
         }
