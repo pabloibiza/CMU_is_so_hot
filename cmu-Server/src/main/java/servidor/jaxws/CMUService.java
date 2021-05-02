@@ -11,6 +11,8 @@ import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import servidor.bd.Medicion;
+import servidor.bd.MedicionFacade;
 import servidor.bd.Usuario;
 import servidor.bd.UsuarioFacade;
 
@@ -23,6 +25,7 @@ import servidor.bd.UsuarioFacade;
 public class CMUService {
 
     @EJB UsuarioFacade bd;
+    @EJB MedicionFacade med;
     
     @WebMethod(operationName = "addUsuario")
     public void addUsuario(@WebParam(name = "usuario") Usuario usuario) {
@@ -67,6 +70,38 @@ public class CMUService {
         return p;
     }
     
+    @WebMethod(operationName = "addMedicion")
+    public void addMedicion(@WebParam(name = "medicion") Medicion medicion) {
+       med.create(medicion);
+    }
+    
+    @WebMethod(operationName = "getMedicion")
+    public Medicion getMedicion(@WebParam(name = "id") Long _id) {
+        Medicion p = null;
+        p = med.find(_id);
+        return p;
+    }
+    
+    @WebMethod(operationName = "editMedicion")
+    public void editMedicion(@WebParam(name = "medicion") Medicion _medicion) {
+        med.edit(_medicion);
+    }
+    
+    @WebMethod(operationName = "removeMedicion")
+    public void removeMedicion(@WebParam(name = "medicion") Medicion _medicion) {
+        med.remove(_medicion);
+    }
+        
+    @WebMethod(operationName = "getMediciones")
+    public List<Medicion> getMediciones() {
+        List<Medicion> medicion = med.findAll();
+        if (medicion==null){
+            medicion = new ArrayList();
+        }
+        return medicion;
+    }
+    
+        
     /**
      * This is a sample web service operation
      */
