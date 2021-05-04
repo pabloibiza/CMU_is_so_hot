@@ -4,6 +4,12 @@
 <xsd:import namespace="http://jaxws.servidor/" schemaLocation="http://155.210.71.106:8080/cmu-Server/CMUService?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="addMedicion">
+<part name="parameters" element="tns:addMedicion"/>
+</message>
+<message name="addMedicionResponse">
+<part name="parameters" element="tns:addMedicionResponse"/>
+</message>
 <message name="getNumUsuario">
 <part name="parameters" element="tns:getNumUsuario"/>
 </message>
@@ -15,6 +21,24 @@
 </message>
 <message name="getUsuarioLoginResponse">
 <part name="parameters" element="tns:getUsuarioLoginResponse"/>
+</message>
+<message name="removeMedicion">
+<part name="parameters" element="tns:removeMedicion"/>
+</message>
+<message name="removeMedicionResponse">
+<part name="parameters" element="tns:removeMedicionResponse"/>
+</message>
+<message name="getMediciones">
+<part name="parameters" element="tns:getMediciones"/>
+</message>
+<message name="getMedicionesResponse">
+<part name="parameters" element="tns:getMedicionesResponse"/>
+</message>
+<message name="editMedicion">
+<part name="parameters" element="tns:editMedicion"/>
+</message>
+<message name="editMedicionResponse">
+<part name="parameters" element="tns:editMedicionResponse"/>
 </message>
 <message name="editUsuario">
 <part name="parameters" element="tns:editUsuario"/>
@@ -46,6 +70,12 @@
 <message name="addUsuarioResponse">
 <part name="parameters" element="tns:addUsuarioResponse"/>
 </message>
+<message name="getMedicion">
+<part name="parameters" element="tns:getMedicion"/>
+</message>
+<message name="getMedicionResponse">
+<part name="parameters" element="tns:getMedicionResponse"/>
+</message>
 <message name="getUsuarios">
 <part name="parameters" element="tns:getUsuarios"/>
 </message>
@@ -53,6 +83,10 @@
 <part name="parameters" element="tns:getUsuariosResponse"/>
 </message>
 <portType name="CMUService">
+<operation name="addMedicion">
+<input wsam:Action="http://jaxws.servidor/CMUService/addMedicionRequest" message="tns:addMedicion"/>
+<output wsam:Action="http://jaxws.servidor/CMUService/addMedicionResponse" message="tns:addMedicionResponse"/>
+</operation>
 <operation name="getNumUsuario">
 <input wsam:Action="http://jaxws.servidor/CMUService/getNumUsuarioRequest" message="tns:getNumUsuario"/>
 <output wsam:Action="http://jaxws.servidor/CMUService/getNumUsuarioResponse" message="tns:getNumUsuarioResponse"/>
@@ -60,6 +94,18 @@
 <operation name="getUsuarioLogin">
 <input wsam:Action="http://jaxws.servidor/CMUService/getUsuarioLoginRequest" message="tns:getUsuarioLogin"/>
 <output wsam:Action="http://jaxws.servidor/CMUService/getUsuarioLoginResponse" message="tns:getUsuarioLoginResponse"/>
+</operation>
+<operation name="removeMedicion">
+<input wsam:Action="http://jaxws.servidor/CMUService/removeMedicionRequest" message="tns:removeMedicion"/>
+<output wsam:Action="http://jaxws.servidor/CMUService/removeMedicionResponse" message="tns:removeMedicionResponse"/>
+</operation>
+<operation name="getMediciones">
+<input wsam:Action="http://jaxws.servidor/CMUService/getMedicionesRequest" message="tns:getMediciones"/>
+<output wsam:Action="http://jaxws.servidor/CMUService/getMedicionesResponse" message="tns:getMedicionesResponse"/>
+</operation>
+<operation name="editMedicion">
+<input wsam:Action="http://jaxws.servidor/CMUService/editMedicionRequest" message="tns:editMedicion"/>
+<output wsam:Action="http://jaxws.servidor/CMUService/editMedicionResponse" message="tns:editMedicionResponse"/>
 </operation>
 <operation name="editUsuario">
 <input wsam:Action="http://jaxws.servidor/CMUService/editUsuarioRequest" message="tns:editUsuario"/>
@@ -81,6 +127,10 @@
 <input wsam:Action="http://jaxws.servidor/CMUService/addUsuarioRequest" message="tns:addUsuario"/>
 <output wsam:Action="http://jaxws.servidor/CMUService/addUsuarioResponse" message="tns:addUsuarioResponse"/>
 </operation>
+<operation name="getMedicion">
+<input wsam:Action="http://jaxws.servidor/CMUService/getMedicionRequest" message="tns:getMedicion"/>
+<output wsam:Action="http://jaxws.servidor/CMUService/getMedicionResponse" message="tns:getMedicionResponse"/>
+</operation>
 <operation name="getUsuarios">
 <input wsam:Action="http://jaxws.servidor/CMUService/getUsuariosRequest" message="tns:getUsuarios"/>
 <output wsam:Action="http://jaxws.servidor/CMUService/getUsuariosResponse" message="tns:getUsuariosResponse"/>
@@ -88,6 +138,15 @@
 </portType>
 <binding name="CMUServicePortBinding" type="tns:CMUService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="addMedicion">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="getNumUsuario">
 <soap:operation soapAction=""/>
 <input>
@@ -98,6 +157,33 @@
 </output>
 </operation>
 <operation name="getUsuarioLogin">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="removeMedicion">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getMediciones">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="editMedicion">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -143,6 +229,15 @@
 </output>
 </operation>
 <operation name="addUsuario">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getMedicion">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

@@ -5,11 +5,12 @@
  */
 package client.servlet;
 
-import client.jaxws.CMUService;
-import client.jaxws.CMUService_Service;
-import client.jaxws.Usuario;
+import client.ws.CMUService;
+import client.ws.CMUService_Service;
+import client.ws.Usuario;
+
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +28,8 @@ public class EliminarUsuario extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/cmu-Server/CMUService.wsdl")
     private CMUService_Service service;
 
+
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,19 +43,18 @@ public class EliminarUsuario extends HttpServlet {
             throws ServletException, IOException {
         Long id = Long.valueOf(request.getParameter("id"));
         
+        
         try { // Call Web Service Operation
             CMUService port = service.getCMUServicePort();
-            // TODO initialize WS operation arguments here
            
-            Usuario usuarioEliminar = port.getUsuario(id);
-           
-            if (usuarioEliminar!=null){
-                port.removeUsuario(usuarioEliminar);
+            // TODO process result here
+            Usuario usuario = port.getUsuario(id);
+            if (usuario == null){
+                port.removeUsuario(usuario);
             }
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
-
          response.sendRedirect(response.encodeURL("index.jsp"));
     }
 

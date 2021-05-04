@@ -4,19 +4,10 @@
     Author     : Usuario
 --%>
 
-<%@page import="client.jaxws.Usuario"%>
+<%@page import="client.ws.Usuario"%>
 <%@page import="client.ListarUsuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-    ListarUsuarios lp = (ListarUsuarios) session.getAttribute("listausuarios");
-    if (lp == null) {
-        lp = new ListarUsuarios();
-        response.sendRedirect(response.encodeURL("getUsuarios"));
-    } else {
-        session.setAttribute("listausuarios", null);
-    }
-%>
 
 <html>
     <head>
@@ -90,16 +81,7 @@
                 <table>
                     <tr><legend> Lista: </legend></tr>
                     <tr style="background-color: blue; color:white"><td>Id</td><td>Nombre</td><td>Planta</td><td>Tipo Usuario</td></tr>
-                    <% for (Usuario u : lp.getLista()) {%>
-                    <tr>
-                        <td><%=u.getId()%></td>
-                        <td><%=u.getNombre()%></td>
-                        <td><%=u.getPlanta()%></td>
-                        <td><%=u.isAdministrador()%></td>
-
-                        <td></td><td><a href="<%=response.encodeURL("eliminarUsuario?id="+u.getId())%>">Eliminar</a></td>
-                    </tr>
-                    <% }%>
+                   
                    
                 </table>
             </fieldset>

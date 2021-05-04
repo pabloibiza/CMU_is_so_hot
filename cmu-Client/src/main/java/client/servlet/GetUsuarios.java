@@ -6,9 +6,11 @@
 package client.servlet;
 
 import client.ListarUsuarios;
-import client.jaxws.CMUService;
-import client.jaxws.CMUService_Service;
-import client.jaxws.Usuario;
+import client.ws.CMUService;
+import client.ws.CMUService_Service;
+import client.ws.Usuario;
+
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -31,6 +33,8 @@ public class GetUsuarios extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/cmu-Server/CMUService.wsdl")
     private CMUService_Service service;
 
+   
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,7 +50,7 @@ public class GetUsuarios extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         List<Usuario> usuarios = null;
-
+       
         try { // Call Web Service Operation
             CMUService port = service.getCMUServicePort();
             // TODO process result here
@@ -55,7 +59,7 @@ public class GetUsuarios extends HttpServlet {
             if (usuarios == null){
                 usuarios = new ArrayList();
             }
-
+          
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }

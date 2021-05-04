@@ -6,9 +6,9 @@
 package client.servlet;
 
 import client.hash.TextToHash;
-import client.jaxws.CMUService;
-import client.jaxws.CMUService_Service;
-import client.jaxws.Usuario;
+import client.ws.CMUService;
+import client.ws.CMUService_Service;
+import client.ws.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -28,6 +28,8 @@ public class AddUsuario extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/cmu-Server/CMUService.wsdl")
     private CMUService_Service service;
+
+    
     private boolean administrador;
 
     /**
@@ -43,8 +45,7 @@ public class AddUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(true);
-        
-        
+
         String nombre = request.getParameter("nombre");
         String contrasena = request.getParameter("contrasena");
         String planta = request.getParameter("planta");
@@ -52,28 +53,23 @@ public class AddUsuario extends HttpServlet {
         
         if (tipoUsuario.equals("administrador")){
             administrador = true;
-            
         }      
-        
         
         Usuario usuario = new Usuario();
         usuario.setNombre(nombre);
         usuario.setContrasena(TextToHash.getSHA256(contrasena));
         usuario.setPlanta(planta);
         usuario.setAdministrador(administrador);
-        
-        System.out.println(usuario.getContrasena());
-        
-        
+
         try { // Call Web Service Operation
-            CMUService port = service.getCMUServicePort();
+           CMUService port = service.getCMUServicePort();
             // TODO initialize WS operation arguments here
-           
+            
             port.addUsuario(usuario);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
-        
+
         response.sendRedirect("index.jsp");
         
 

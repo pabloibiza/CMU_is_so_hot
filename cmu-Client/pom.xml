@@ -103,7 +103,7 @@
                             <wsdlFiles>
                                 <wsdlFile>155.210.71.106_8080/cmu-Server/CMUService.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <packageName>client.jaxws</packageName>
+                            <packageName>client.ws</packageName>
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                             </vmArgs>
