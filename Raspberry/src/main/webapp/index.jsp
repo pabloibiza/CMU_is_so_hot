@@ -13,8 +13,8 @@
     Sonoff sonoff = null;
     Raspberry rpi = null;
     InitialContext ic = new InitialContext();
-    sonoff  = (Sonoff)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Sonoff");
-    rpi     = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Raspberry");
+    sonoff  = (Sonoff)ic.lookup("java:global/CMU_is_so_hot-Raspberry/Sonoff");
+    rpi     = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry/Raspberry");
     
     String onDisabled   = "";
     String offDisabled  = "";

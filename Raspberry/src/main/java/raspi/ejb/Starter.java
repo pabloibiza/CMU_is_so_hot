@@ -30,6 +30,7 @@ public class Starter {
         mqtt.addTopicToSubscribe(Topic.TOPIC_SONOFF_STAT_POWER);
         mqtt.addTopicToSubscribe(Topic.TOPIC_RASPI_TEMP);
         mqtt.addTopicToSubscribe(Topic.TOPIC_RASPI_PRESS);
+        mqtt.addTopicToSubscribe(Topic.TOPIC_RASPI_MEDICION);
         mqtt.connectToMqttBroker();
     }
 

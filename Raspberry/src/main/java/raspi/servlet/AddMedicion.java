@@ -51,7 +51,7 @@ public class AddMedicion extends HttpServlet {
         
         try {
             InitialContext ic = new InitialContext();
-            rpi     = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Raspberry");
+            rpi = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Raspberry");
         } catch (NamingException ex) {
             Logger.getLogger(MqttListener.class.getName()).log(Level.SEVERE, null, ex);
         }

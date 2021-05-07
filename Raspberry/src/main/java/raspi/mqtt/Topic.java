@@ -12,13 +12,12 @@ package raspi.mqtt;
 public class Topic {
 
     // to subscribe
-    public static final String TOPIC_MSG               = "/cmu/msg";
     public static final String TOPIC_RASPI_TEMP        = "/cmu/raspi/temp";
     public static final String TOPIC_RASPI_PRESS       = "/cmu/raspi/press";
     public static final String TOPIC_SONOFF_STAT_POWER = "/cmu/stat/sonoff/POWER";
+    public static final String TOPIC_RASPI_MEDICION    = "/cmu/raspi/medicion";
 
     // to publish
-    public static final String TOPIC_HORA               = "/stw/demo/sonLas";
     public static final String TOPIC_SONOFF_CMND_POWER  = "/cmu/cmnd/sonoff/POWER";
     
     // topic de testamento

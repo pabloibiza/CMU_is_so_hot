@@ -31,8 +31,8 @@ public class MqttListener implements MqttCallback {
     public MqttListener(){
         try {
             InitialContext ic = new InitialContext();
-            sonoff  = (Sonoff)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Sonoff");
-            rpi     = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Raspberry");
+            sonoff  = (Sonoff)ic.lookup("java:global/CMU_is_so_hot-Raspberry/Sonoff");
+            rpi     = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry/Raspberry");
         } catch (NamingException ex) {
             Logger.getLogger(MqttListener.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -65,6 +65,11 @@ public class MqttListener implements MqttCallback {
                 Time time_press = new Time();
                 rpi.setFecha(time_press.getDate());
                 break;
+            
+            case Topic.TOPIC_RASPI_MEDICION:
+                System.out.println("SE HA RECIBIDO UNA MEDICION");
+                System.out.println(payload);
+                rpi.parsearEntrada(payload);
 
         }
     }
