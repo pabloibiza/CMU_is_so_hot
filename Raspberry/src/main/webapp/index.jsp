@@ -4,7 +4,6 @@
     Author     : fsern
 --%>
 
-<%@page import="raspi.util.Time"%>
 <%@page import="raspi.ejb.Raspberry"%>
 <%@page import="raspi.ejb.Sonoff"%>
 
@@ -13,8 +12,8 @@
     Sonoff sonoff = null;
     Raspberry rpi = null;
     InitialContext ic = new InitialContext();
-    sonoff  = (Sonoff)ic.lookup("java:global/CMU_is_so_hot-Raspberry/Sonoff");
-    rpi     = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry/Raspberry");
+    sonoff  = (Sonoff)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Sonoff");
+    rpi     = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Raspberry");
     
     String onDisabled   = "";
     String offDisabled  = "";
@@ -32,6 +31,8 @@
         colorSonoff       = "red";
         estadoSonoff      = "APAGADO";
     }
+    
+
     
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -97,7 +98,7 @@ body {font-family: "Lato", sans-serif; font-size: 12px;}
                                 </td>
                             </tr>
                             <tr>
-                                <td>Temperatura:</td>
+                                <td>Temperatura de la H.<%=rpi.getHabitacion()%>:</td>
                                 <td align="center"><b><div style="font-size: 20px;"><%=rpi.getTemp()%> ºC</div></b></td>
                             </tr>
                             <tr>
@@ -105,7 +106,16 @@ body {font-family: "Lato", sans-serif; font-size: 12px;}
                                 <td align="center"><b><div style="font-size: 18px;"><%=rpi.getPress()%> HPa</div></b></td>
                             </tr>
                             <tr>
-                                <td><a href="index.jsp">Ultima lectura</a></td>
+                                <td><a href="index.jsp">Última lectura</a></td>
+                                
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td>Envio de temperaturas</td>
+                                <td><form method="POST" action="addMedicion">
+                                    <button type="submit"  name="estado" value="true"> Activar</button>
+                                    <button type="submit"  name="estado" value="false"> Desactivar</button>
+                                </form></td>
                             </tr>
                         </table>
 

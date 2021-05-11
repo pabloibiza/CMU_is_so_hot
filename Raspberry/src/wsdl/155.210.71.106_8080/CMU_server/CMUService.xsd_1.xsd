@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.4.3.payara-p3 (2.4.3.payara-maintenance-a5c1c68; 2019-06-17T14:04:38+0200) JAXWS-RI/2.3.2.payara-p2 JAXWS-API/2.3.2 JAXB-RI/2.3.2 JAXB-API/2.3.2 git-revision#unknown. --><xs:schema xmlns:tns="http://jaxws.servidor/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://jaxws.servidor/">
+
+<xs:element name="addHabitacion" type="tns:addHabitacion"/>
+
+<xs:element name="addHabitacionResponse" type="tns:addHabitacionResponse"/>
+
+<xs:element name="addMedicion" type="tns:addMedicion"/>
+
+<xs:element name="addMedicionResponse" type="tns:addMedicionResponse"/>
+
+<xs:element name="addUsuario" type="tns:addUsuario"/>
+
+<xs:element name="addUsuarioResponse" type="tns:addUsuarioResponse"/>
+
+<xs:element name="editHabitacion" type="tns:editHabitacion"/>
+
+<xs:element name="editHabitacionResponse" type="tns:editHabitacionResponse"/>
+
+<xs:element name="editMedicion" type="tns:editMedicion"/>
+
+<xs:element name="editMedicionResponse" type="tns:editMedicionResponse"/>
+
+<xs:element name="editUsuario" type="tns:editUsuario"/>
+
+<xs:element name="editUsuarioResponse" type="tns:editUsuarioResponse"/>
+
+<xs:element name="getHabitacion" type="tns:getHabitacion"/>
+
+<xs:element name="getHabitacionResponse" type="tns:getHabitacionResponse"/>
+
+<xs:element name="getHabitaciones" type="tns:getHabitaciones"/>
+
+<xs:element name="getHabitacionesResponse" type="tns:getHabitacionesResponse"/>
+
+<xs:element name="getMedicion" type="tns:getMedicion"/>
+
+<xs:element name="getMedicionResponse" type="tns:getMedicionResponse"/>
+
+<xs:element name="getMediciones" type="tns:getMediciones"/>
+
+<xs:element name="getMedicionesResponse" type="tns:getMedicionesResponse"/>
+
+<xs:element name="getNumUsuario" type="tns:getNumUsuario"/>
+
+<xs:element name="getNumUsuarioResponse" type="tns:getNumUsuarioResponse"/>
+
+<xs:element name="getUsuario" type="tns:getUsuario"/>
+
+<xs:element name="getUsuarioLogin" type="tns:getUsuarioLogin"/>
+
+<xs:element name="getUsuarioLoginResponse" type="tns:getUsuarioLoginResponse"/>
+
+<xs:element name="getUsuarioResponse" type="tns:getUsuarioResponse"/>
+
+<xs:element name="getUsuarios" type="tns:getUsuarios"/>
+
+<xs:element name="getUsuariosResponse" type="tns:getUsuariosResponse"/>
+
+<xs:element name="hello" type="tns:hello"/>
+
+<xs:element name="helloResponse" type="tns:helloResponse"/>
+
+<xs:element name="removeHabitacion" type="tns:removeHabitacion"/>
+
+<xs:element name="removeHabitacionResponse" type="tns:removeHabitacionResponse"/>
+
+<xs:element name="removeMedicion" type="tns:removeMedicion"/>
+
+<xs:element name="removeMedicionResponse" type="tns:removeMedicionResponse"/>
+
+<xs:element name="removeUsuario" type="tns:removeUsuario"/>
+
+<xs:element name="removeUsuarioResponse" type="tns:removeUsuarioResponse"/>
+
+<xs:complexType name="removeMedicion">
+<xs:sequence>
+<xs:element name="medicion" type="tns:medicion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="medicion">
+<xs:sequence>
+<xs:element name="fecha" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="habitacion" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="temperatura" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="removeMedicionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="editHabitacion">
+<xs:sequence>
+<xs:element name="habitacion" type="tns:habitacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="habitacion">
+<xs:sequence>
+<xs:element name="estado" type="xs:boolean" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="mediciones" type="tns:medicion" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="planta" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editHabitacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="removeHabitacion">
+<xs:sequence>
+<xs:element name="habitacion" type="tns:habitacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="removeHabitacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getUsuarioLogin">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUsuarioLoginResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="usuario">
+<xs:sequence>
+<xs:element name="administrador" type="xs:boolean"/>
+<xs:element name="contrasena" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+<xs:element name="nombre" type="xs:string" minOccurs="0"/>
+<xs:element name="planta" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMedicion">
+<xs:sequence>
+<xs:element name="habitacion" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMedicionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:medicion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMediciones">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getMedicionesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:medicion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getHabitaciones">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getHabitacionesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:habitacion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editUsuario">
+<xs:sequence>
+<xs:element name="usuario" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editUsuarioResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getHabitacion">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getHabitacionResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:habitacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editMedicion">
+<xs:sequence>
+<xs:element name="medicion" type="tns:medicion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editMedicionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUsuario">
+<xs:sequence>
+<xs:element name="id" type="xs:long" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getUsuarios">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getUsuariosResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:usuario" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addUsuario">
+<xs:sequence>
+<xs:element name="usuario" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addUsuarioResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="addMedicion">
+<xs:sequence>
+<xs:element name="medicion" type="tns:medicion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addMedicionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getNumUsuario">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getNumUsuarioResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addHabitacion">
+<xs:sequence>
+<xs:element name="habitacion" type="tns:habitacion" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addHabitacionResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="removeUsuario">
+<xs:sequence>
+<xs:element name="usuario" type="tns:usuario" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="removeUsuarioResponse">
+<xs:sequence/>
+</xs:complexType>
+</xs:schema>

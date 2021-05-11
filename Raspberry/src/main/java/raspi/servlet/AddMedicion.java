@@ -6,6 +6,9 @@
 package raspi.servlet;
 
 import java.io.IOException;
+import static java.lang.Boolean.parseBoolean;
+import static java.lang.Thread.sleep;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,14 +19,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.ws.WebServiceRef;
 import raspi.ejb.Raspberry;
 import raspi.mqtt.MqttListener;
-import raspi.webservice.CMUService;
 import raspi.webservice.CMUService_Service;
-import raspi.webservice.Medicion;
+
 
 /**
  *
@@ -32,8 +35,10 @@ import raspi.webservice.Medicion;
 @WebServlet(name = "addMedicion", urlPatterns = {"/addMedicion"})
 public class AddMedicion extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/cmu-Server/CMUService.wsdl")
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
     private CMUService_Service service;
+
+    
     private Raspberry rpi;
 
     /**
@@ -46,32 +51,26 @@ public class AddMedicion extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, DatatypeConfigurationException {
+            throws ServletException, IOException, DatatypeConfigurationException, InterruptedException{
         response.setContentType("text/html;charset=UTF-8");
+        
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession(true);
+        Boolean estado = parseBoolean(request.getParameter("estado"));
+        
         
         try {
             InitialContext ic = new InitialContext();
-            rpi = (Raspberry)ic.lookup("java:global/CMU_is_so_hot-Raspberry-1.0-SNAPSHOT/Raspberry");
+            rpi = (Raspberry)ic.lookup("java:global/CMU-RX_MQTT/Raspberry");
         } catch (NamingException ex) {
             Logger.getLogger(MqttListener.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String temperatura = rpi.getTemp();
-        GregorianCalendar date = new GregorianCalendar();
-        date.setTime(rpi.getFecha());
         
-        Medicion medicion = new Medicion();
-        if(temperatura != null && date != null){
-            medicion.setTemperatura(temperatura);
-            medicion.setFecha(DatatypeFactory.newInstance().newXMLGregorianCalendar(date));
-        }
         
-        try { // Call Web Service Operation
-            CMUService port = service.getCMUServicePort();
-            port.addMedicion(medicion);
-        } catch (Exception ex) {
-            // TODO handle custom exceptions here
-        }
+        
+        response.sendRedirect(response.encodeURL("index.jsp"));
+        
 
     }
 
@@ -91,6 +90,8 @@ public class AddMedicion extends HttpServlet {
             processRequest(request, response);
         } catch (DatatypeConfigurationException ex) {
             Logger.getLogger(AddMedicion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AddMedicion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -108,6 +109,8 @@ public class AddMedicion extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (DatatypeConfigurationException ex) {
+            Logger.getLogger(AddMedicion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
             Logger.getLogger(AddMedicion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

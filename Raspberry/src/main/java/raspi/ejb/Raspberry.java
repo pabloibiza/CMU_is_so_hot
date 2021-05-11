@@ -4,16 +4,21 @@ De momento solo se considera la temperatura de su CPU.
  */
 package raspi.ejb;
 
-import com.google.gson.Gson;
-import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.ws.WebServiceRef;
+import raspi.webservice.CMUService;
+import raspi.webservice.CMUService_Service;
+import raspi.webservice.Medicion;
+
 
 /**
  *
@@ -21,46 +26,20 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class Raspberry {
+
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
+    CMUService_Service service;
+    private String habitacion;
     private String  temp;  
     private String  press;  
     private Date fecha;
-
-    public void parsearEntrada(String entrada){
-        Scanner sc = new Scanner(entrada).useDelimiter(";");
-        
-        setTemp(sc.next());
-        System.out.println("LA TEMPERATURA ES: " + getTemp());
-        setPress(sc.next());
-        System.out.println("LA PRESION ES: " + getPress());
-        String fecha_sin_parsear = sc.next();
-        System.out.println(fecha_sin_parsear);
-        setFecha(parsearFecha(fecha_sin_parsear));
-        System.out.println("LA FECHA ES: " + getFecha().toString());
-        
+    
+    public String getHabitacion() {
+        return habitacion;
     }
     
-    public Date parsearFecha(String entrada){
-        /*Scanner sc = new Scanner(input);
-        
-        int dia = Integer.valueOf(sc.next(";"));
-        int mes = Integer.valueOf(sc.next(";"));
-        int ano = Integer.valueOf(sc.next(";"));
-        int hora = Integer.valueOf(sc.next(";"));
-        int minuto = Integer.valueOf(sc.next(";"));
-        int segundo = Integer.valueOf(sc.next(";"));
-        
-        Date fechaParseada = new Date();
-        */
-        System.out.println(entrada);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date fechaParseada = null;
-        try {
-            fechaParseada = sdf.parse(entrada);
-        } catch (ParseException ex) {
-            Logger.getLogger(Raspberry.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return fechaParseada;
+    public void setHabitacion(String habitacion){
+        this.habitacion = habitacion;
     }
     
     public String getTemp() {
@@ -85,6 +64,53 @@ public class Raspberry {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public void parsearEntrada(String entrada){
+        Scanner sc = new Scanner(entrada).useDelimiter(";");
+        
+        setHabitacion(sc.next());
+        System.out.println("LA HABITACION ES: " + getHabitacion());
+        setTemp(sc.next());
+        System.out.println("LA TEMPERATURA ES: " + getTemp());
+        setPress(sc.next());
+        System.out.println("LA PRESION ES: " + getPress());
+        String fecha_sin_parsear = sc.next();
+        System.out.println(fecha_sin_parsear);
+        setFecha(parsearFecha(fecha_sin_parsear));
+        System.out.println("LA FECHA ES: " + getFecha().toString());
+        
+    }
+    
+    public Date parsearFecha(String entrada){
+        System.out.println(entrada);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date fechaParseada = null;
+        try {
+            fechaParseada = sdf.parse(entrada);
+        } catch (ParseException ex) {
+            Logger.getLogger(Raspberry.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return fechaParseada;
+    }
+    
+    public void enviarMedicion() throws DatatypeConfigurationException {
+        GregorianCalendar date = new GregorianCalendar();
+        date.setTime(this.getFecha());
+        Medicion medicion = new Medicion();
+        medicion.setTemperatura(this.getTemp());
+        medicion.setFecha(DatatypeFactory.newInstance().newXMLGregorianCalendar(date));
+        
+        try { // Call Web Service Operation
+            CMUService port = service.getCMUServicePort();
+            // TODO initialize WS operation arguments here
+            
+            port.addMedicion(medicion);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+
     }
     
     
