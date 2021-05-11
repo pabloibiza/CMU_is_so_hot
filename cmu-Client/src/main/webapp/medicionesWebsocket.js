@@ -5,36 +5,42 @@
  */
 
 
-var webSocket;
 
-var wsUri = "ws://" + document.location.host + "/cmu-Client/usuarios";
+var wsUri = "ws://" + document.location.host + "/cmu-Client/usuario";
+var webSocket;
+console.log("hola aaadadaffsfsdfdfdf");
+
 var tablaUsuarios = document.getElementById("tablaUsuarios");
+
 
 openSocket();
 
-
 function openSocket() {
+    console.log("openSocket js");
     // Ensures only one connection is open at a time
     if (webSocket !== undefined && webSocket.readyState !== WebSocket.CLOSED) {
         closeSocket();
     }
-    
+
+
     // Create a new instance of the websocket
     webSocket = new WebSocket(wsUri);
-    console.log("creado");
+
+
+    // eventos del websocket ====
 
     webSocket.onopen = function (event) {
+        console.log("openlog");
         if (event.data === undefined)
             return;
     };
 
+
     webSocket.onmessage = function (event) {
         var txt = event.data;
-
-        if (txt.indexOf("&") > -1) {
-            nuevoUsuario(txt.substr(2));
-        }
-
+        console.log("**********>" + txt);
+        nuevoUsuario(txt);
+        
     };
 
     webSocket.onclose = function (event) {
@@ -47,19 +53,12 @@ function openSocket() {
     };
 }
 
-
-
 function closeSocket() {
     webSocket.close();
 }
 
+
 function nuevoUsuario(text) {
-    console.log(text);
     tablaUsuarios.innerHTML += text;
 }
-
-function borrar() {
-    messages.innerHTML = "";
-}
-
 

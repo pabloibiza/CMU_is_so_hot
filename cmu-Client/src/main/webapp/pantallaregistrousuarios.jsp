@@ -98,6 +98,9 @@
                     <% for (Usuario u : lu.getLista()) {%>
                     <tr>
                         <td><%=u.getId()%></td>
+                        <td><%=u.getNombre()%></td>
+                        <td><%=u.getPlanta()%></td>
+                        <td><%=u.isAdministrador()%></td>
 
                         <td></td><td><a href="<%=response.encodeURL("eliminarUsuario?id=" + u.getId())%>">Eliminar</a></td>
                     </tr>

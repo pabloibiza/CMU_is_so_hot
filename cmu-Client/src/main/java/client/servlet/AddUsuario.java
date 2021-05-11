@@ -9,10 +9,12 @@ import client.hash.TextToHash;
 import client.jaxws.CMUService;
 import client.jaxws.CMUService_Service;
 import client.jaxws.Usuario;
+import client.websocket.WebSocketManager;
 
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +31,14 @@ import javax.xml.ws.WebServiceRef;
 public class AddUsuario extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
-    private CMUService_Service service;    
-  
+    private CMUService_Service service;  
+    
+    private WebSocketManager websocket;
+
+    @PostConstruct
+    public void init() {
+        websocket = WebSocketManager.getInstance();
+    }
     
     private boolean administrador;
 
@@ -72,6 +80,16 @@ public class AddUsuario extends HttpServlet {
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
+        
+        String msj = "<tr><td>" + nombre + "</td><td>" + planta
+                + "</td><td>" + administrador + "</td><td><a href=\"#\"><b>Eliminar</b></td></tr>";
+        
+        System.out.println(msj);
+
+        if (websocket != null) {
+            websocket.sendMensaje(msj);
+        }
+
         
          
        
