@@ -6,9 +6,10 @@
 package client.servlet;
 
 import client.ListarUsuarios;
-import client.ws.CMUService;
-import client.ws.CMUService_Service;
-import client.ws.Usuario;
+import client.jaxws.CMUService;
+import client.jaxws.CMUService_Service;
+import client.jaxws.Usuario;
+
 
 
 import java.io.IOException;
@@ -30,8 +31,10 @@ import javax.xml.ws.WebServiceRef;
 @WebServlet(name = "GetUsuarios", urlPatterns = {"/getUsuarios"})
 public class GetUsuarios extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/cmu-Server/CMUService.wsdl")
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
     private CMUService_Service service;
+
+  
 
    
 
@@ -50,20 +53,22 @@ public class GetUsuarios extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         List<Usuario> usuarios = null;
-       
+        
+        
         try { // Call Web Service Operation
-            CMUService port = service.getCMUServicePort();
+           CMUService port = service.getCMUServicePort();
             // TODO process result here
             usuarios = port.getUsuarios();
             
             if (usuarios == null){
                 usuarios = new ArrayList();
             }
-          
+   
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
 
+       
         ListarUsuarios listausuarios = new ListarUsuarios(usuarios);
         session.setAttribute("listausuarios", listausuarios);
         response.sendRedirect("index.jsp");

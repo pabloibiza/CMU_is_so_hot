@@ -6,7 +6,8 @@
 package client;
 
 
-import client.ws.Usuario;
+
+import client.jaxws.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -6,9 +6,11 @@
 package client.servlet;
 
 import client.hash.TextToHash;
-import client.ws.CMUService;
-import client.ws.CMUService_Service;
-import client.ws.Usuario;
+import client.jaxws.CMUService;
+import client.jaxws.CMUService_Service;
+import client.jaxws.Usuario;
+
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -26,9 +28,9 @@ import javax.xml.ws.WebServiceRef;
 @WebServlet(name = "AddUsuario", urlPatterns = {"/addUsuario"})
 public class AddUsuario extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/cmu-Server/CMUService.wsdl")
-    private CMUService_Service service;
-
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
+    private CMUService_Service service;    
+  
     
     private boolean administrador;
 
@@ -61,16 +63,21 @@ public class AddUsuario extends HttpServlet {
         usuario.setPlanta(planta);
         usuario.setAdministrador(administrador);
 
+        
         try { // Call Web Service Operation
            CMUService port = service.getCMUServicePort();
             // TODO initialize WS operation arguments here
-            
+          
             port.addUsuario(usuario);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
+        
+         
+       
 
-        response.sendRedirect("index.jsp");
+
+        response.sendRedirect("pantallaregistrousuarios.jsp");
         
 
         

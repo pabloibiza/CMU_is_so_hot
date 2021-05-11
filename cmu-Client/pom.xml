@@ -101,13 +101,13 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>155.210.71.106_8080/cmu-Server/CMUService.wsdl</wsdlFile>
+                                <wsdlFile>155.210.71.106_8080/CMU_server/CMUService.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <packageName>client.ws</packageName>
+                            <packageName>client.jaxws</packageName>
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                             </vmArgs>
-                            <wsdlLocation>http://155.210.71.106:8080/cmu-Server/CMUService?WSDL</wsdlLocation>
+                            <wsdlLocation>http://155.210.71.106:8080/CMU_server/CMUService?WSDL</wsdlLocation>
                             <staleFile>${project.build.directory}/jaxws/stale/CMUService.stale</staleFile>
                         </configuration>
                         <id>wsimport-generate-CMUService</id>
