@@ -6,11 +6,14 @@
 package client.servlet;
 
 import client.Usuarios;
+import client.hash.TextToHash;
 import client.jaxws.CMUService;
 import client.jaxws.CMUService_Service;
 import client.jaxws.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,9 +32,9 @@ public class Login extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
     private CMUService_Service service;
-
-    @EJB
-    Usuarios usuarios;
+    private List<Usuario> usuarios = null;
+    private String url ;
+    private boolean existeUsuario = false;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,11 +53,45 @@ public class Login extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         String nombreUsuario = request.getParameter("login");
-        String pass = request.getParameter("password");
+        String pass = TextToHash.getSHA256(request.getParameter("pass"));
 
-        //VERIFICAR CONTRASENA Y USUARIO
-        response.sendRedirect(response.encodeURL("pantallainiciousuariosnormales.jsp"));
+        try { // Call Web Service Operation
+            CMUService port = service.getCMUServicePort();
 
+            // TODO process result here
+            usuarios = port.getUsuarios();
+
+            if (usuarios == null) {
+                usuarios = new ArrayList();
+            }
+
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+        }
+
+        for (Usuario u : usuarios) {
+            if (u.getNombre().equals(nombreUsuario) && u.getContrasena().equals(pass)) {
+                session.setAttribute("login", nombreUsuario);
+               
+                existeUsuario = true;
+                if (u.isAdministrador()) {
+                    url = "pantallainicioadministrador.jsp";
+
+                } else{
+                     url = "pantallainiciousuariosnormales.jsp";
+                }
+
+               
+            }
+
+        }
+
+        if (!existeUsuario) {
+            session.setAttribute("msg", "Usuario y/o Contraseña NO VÁLIDOS");
+            url = "index.jsp";
+        }
+
+        response.sendRedirect(response.encodeURL(url));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -53,13 +53,14 @@ public class EliminarUsuario extends HttpServlet {
             
             if (usuarioEliminar != null){
                 port.removeUsuario(usuarioEliminar);
+                response.sendRedirect(response.encodeURL("pantallaregistrousuarios.jsp"));
             }
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
 
        
-         response.sendRedirect(response.encodeURL("index.jsp"));
+         response.sendRedirect(response.encodeURL("pantallaregistrousuarios.jsp"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

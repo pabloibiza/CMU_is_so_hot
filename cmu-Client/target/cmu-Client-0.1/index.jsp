@@ -8,6 +8,11 @@
 <html>
     <%
         String msg = (String) session.getAttribute("msg");
+        String login = (String) session.getAttribute("login");
+        
+        if (login != null){
+            response.sendRedirect("pantallainiciousuariosnormales.jsp");
+        }
 
     %>
     <head>
@@ -323,12 +328,13 @@
                 <form method="POST" action="<%=response.encodeURL("login")%>">
                     <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario">
                     
-                    <input type="password" encrypt ="sha1" pattern=".{8,32}" id="password" class="fadeIn third" name="login" placeholder="contraseña">
+                    <input type="password" id="pass" class="fadeIn third" name="pass" placeholder="contraseña">
+                    
                     <%  if (msg != null) {%>
                     <div style="background-color: red; color:white; font-weight: bold"><%=msg%></div>
                     <%
                             session.setAttribute("msg", null);
-                        } // if 
+                        }  
                     %>
                    
                     <br>

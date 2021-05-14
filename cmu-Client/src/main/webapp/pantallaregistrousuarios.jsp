@@ -86,6 +86,7 @@
                         <hr>
                     </fieldset>
                 </td>
+            </tr>
 
 
             <tr>
@@ -106,11 +107,10 @@
                     </tr>
                     <% }%>
                 </table>
-
             </fieldset>
         </tr>
-    </tr>
-</table>
-<script type="text/javascript" src="medicionesWebsocket.js"></script>
+    </table>
+
+    <script type="text/javascript" src="medicionesWebsocket.js"></script>
 </body>
 </html>
