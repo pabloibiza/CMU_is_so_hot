@@ -42,9 +42,6 @@
             body{
                 background-color: #DCF9E4;
             }
-            head{
-                background-color: #FFFFFF;
-            }
 
 
 
@@ -78,6 +75,21 @@
                         Última Medicion
                         <br><hr><br>
                         <img width="180px" height="180px" src="images/umedicion.png"> 
+
+                    </center>
+                    </a> 
+                </legend>
+
+            </div>
+
+
+            <div class="col-lg-3">
+                <legend>
+                    <a class="nav-link" href="<%=response.encodeRedirectURL("ControlSonoff.jsp")%>"/>
+                    <center>
+                        Calefacción
+                        <br><hr><br>
+                        <img width="180px" height="180px" src="images/calefaccion.png"> 
 
                     </center>
                     </a> 

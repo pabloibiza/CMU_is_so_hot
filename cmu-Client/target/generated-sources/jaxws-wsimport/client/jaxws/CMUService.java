@@ -181,6 +181,36 @@ public interface CMUService {
     /**
      * 
      * @param habitacion
+     * @return
+     *     returns client.jaxws.Medicion
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getMedicionHabitacion", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.GetMedicionHabitacion")
+    @ResponseWrapper(localName = "getMedicionHabitacionResponse", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.GetMedicionHabitacionResponse")
+    @Action(input = "http://jaxws.servidor/CMUService/getMedicionHabitacionRequest", output = "http://jaxws.servidor/CMUService/getMedicionHabitacionResponse")
+    public Medicion getMedicionHabitacion(
+        @WebParam(name = "habitacion", targetNamespace = "")
+        String habitacion);
+
+    /**
+     * 
+     * @param id
+     * @return
+     *     returns client.jaxws.Medicion
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getMedicionID", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.GetMedicionID")
+    @ResponseWrapper(localName = "getMedicionIDResponse", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.GetMedicionIDResponse")
+    @Action(input = "http://jaxws.servidor/CMUService/getMedicionIDRequest", output = "http://jaxws.servidor/CMUService/getMedicionIDResponse")
+    public Medicion getMedicionID(
+        @WebParam(name = "id", targetNamespace = "")
+        Long id);
+
+    /**
+     * 
+     * @param habitacion
      */
     @WebMethod
     @RequestWrapper(localName = "addHabitacion", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.AddHabitacion")

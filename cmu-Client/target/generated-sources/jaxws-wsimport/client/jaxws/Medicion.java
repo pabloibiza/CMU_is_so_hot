@@ -21,6 +21,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="fecha" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/>
  *         &lt;element name="habitacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="planta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="temperatura" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -35,6 +36,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "fecha",
     "habitacion",
     "id",
+    "planta",
     "temperatura"
 })
 public class Medicion {
@@ -43,6 +45,7 @@ public class Medicion {
     protected XMLGregorianCalendar fecha;
     protected String habitacion;
     protected Long id;
+    protected String planta;
     protected String temperatura;
 
     /**
@@ -115,6 +118,30 @@ public class Medicion {
      */
     public void setId(Long value) {
         this.id = value;
+    }
+
+    /**
+     * Obtiene el valor de la propiedad planta.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getPlanta() {
+        return planta;
+    }
+
+    /**
+     * Define el valor de la propiedad planta.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setPlanta(String value) {
+        this.planta = value;
     }
 
     /**

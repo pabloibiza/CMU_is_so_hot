@@ -36,9 +36,7 @@
             body{
                 background-color: #DCF9E4;
             }
-            head{
-                background-color: #FFFFFF;
-            }
+            
         </style>
     </head>
 

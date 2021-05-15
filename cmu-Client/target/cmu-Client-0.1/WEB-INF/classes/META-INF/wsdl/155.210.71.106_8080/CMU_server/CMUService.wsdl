@@ -76,6 +76,18 @@
 <message name="getUsuariosResponse">
 <part name="parameters" element="tns:getUsuariosResponse"/>
 </message>
+<message name="getMedicionHabitacion">
+<part name="parameters" element="tns:getMedicionHabitacion"/>
+</message>
+<message name="getMedicionHabitacionResponse">
+<part name="parameters" element="tns:getMedicionHabitacionResponse"/>
+</message>
+<message name="getMedicionID">
+<part name="parameters" element="tns:getMedicionID"/>
+</message>
+<message name="getMedicionIDResponse">
+<part name="parameters" element="tns:getMedicionIDResponse"/>
+</message>
 <message name="addHabitacion">
 <part name="parameters" element="tns:addHabitacion"/>
 </message>
@@ -160,6 +172,14 @@
 <operation name="getUsuarios">
 <input wsam:Action="http://jaxws.servidor/CMUService/getUsuariosRequest" message="tns:getUsuarios"/>
 <output wsam:Action="http://jaxws.servidor/CMUService/getUsuariosResponse" message="tns:getUsuariosResponse"/>
+</operation>
+<operation name="getMedicionHabitacion">
+<input wsam:Action="http://jaxws.servidor/CMUService/getMedicionHabitacionRequest" message="tns:getMedicionHabitacion"/>
+<output wsam:Action="http://jaxws.servidor/CMUService/getMedicionHabitacionResponse" message="tns:getMedicionHabitacionResponse"/>
+</operation>
+<operation name="getMedicionID">
+<input wsam:Action="http://jaxws.servidor/CMUService/getMedicionIDRequest" message="tns:getMedicionID"/>
+<output wsam:Action="http://jaxws.servidor/CMUService/getMedicionIDResponse" message="tns:getMedicionIDResponse"/>
 </operation>
 <operation name="addHabitacion">
 <input wsam:Action="http://jaxws.servidor/CMUService/addHabitacionRequest" message="tns:addHabitacion"/>
@@ -288,6 +308,24 @@
 </output>
 </operation>
 <operation name="getUsuarios">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getMedicionHabitacion">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getMedicionID">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

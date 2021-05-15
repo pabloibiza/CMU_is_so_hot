@@ -71,7 +71,7 @@ public class GetUsuarios extends HttpServlet {
        
         ListarUsuarios listausuarios = new ListarUsuarios(usuarios);
         session.setAttribute("listausuarios", listausuarios);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("pantallaregistrousuarios.jsp");
 
     }
 

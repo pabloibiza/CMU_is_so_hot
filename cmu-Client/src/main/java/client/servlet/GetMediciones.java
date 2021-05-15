@@ -60,7 +60,7 @@ public class GetMediciones extends HttpServlet {
 
         ListarMediciones listamediciones = new ListarMediciones(mediciones);
         session.setAttribute("listamediciones", listamediciones);
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("pantallatemperaturas.jsp");
 
     }
 
