@@ -34,10 +34,6 @@ public class GetUsuarios extends HttpServlet {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
     private CMUService_Service service;
 
-  
-
-   
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -53,7 +49,6 @@ public class GetUsuarios extends HttpServlet {
         HttpSession session = request.getSession(true);
 
         List<Usuario> usuarios = null;
-        
         
         try { // Call Web Service Operation
            CMUService port = service.getCMUServicePort();

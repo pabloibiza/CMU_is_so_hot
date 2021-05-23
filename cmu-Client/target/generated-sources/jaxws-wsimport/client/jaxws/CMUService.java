@@ -210,6 +210,21 @@ public interface CMUService {
 
     /**
      * 
+     * @param planta
+     * @return
+     *     returns java.util.List<client.jaxws.Medicion>
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getMedicionesPlanta", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.GetMedicionesPlanta")
+    @ResponseWrapper(localName = "getMedicionesPlantaResponse", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.GetMedicionesPlantaResponse")
+    @Action(input = "http://jaxws.servidor/CMUService/getMedicionesPlantaRequest", output = "http://jaxws.servidor/CMUService/getMedicionesPlantaResponse")
+    public List<Medicion> getMedicionesPlanta(
+        @WebParam(name = "planta", targetNamespace = "")
+        String planta);
+
+    /**
+     * 
      * @param habitacion
      */
     @WebMethod
@@ -240,10 +255,10 @@ public interface CMUService {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getMedicion", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.GetMedicion")
-    @ResponseWrapper(localName = "getMedicionResponse", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.GetMedicionResponse")
-    @Action(input = "http://jaxws.servidor/CMUService/getMedicionRequest", output = "http://jaxws.servidor/CMUService/getMedicionResponse")
-    public List<Medicion> getMedicion(
+    @RequestWrapper(localName = "getMedicionesHabitacion", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.GetMedicionesHabitacion")
+    @ResponseWrapper(localName = "getMedicionesHabitacionResponse", targetNamespace = "http://jaxws.servidor/", className = "client.jaxws.GetMedicionesHabitacionResponse")
+    @Action(input = "http://jaxws.servidor/CMUService/getMedicionesHabitacionRequest", output = "http://jaxws.servidor/CMUService/getMedicionesHabitacionResponse")
+    public List<Medicion> getMedicionesHabitacion(
         @WebParam(name = "habitacion", targetNamespace = "")
         String habitacion);
 

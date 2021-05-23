@@ -94,7 +94,7 @@
 
                 <table id="tablaUsuarios">
                     <tr><legend> Lista: </legend></tr>
-                    <tr style="background-color: blue; color:white"><td>Id</td><td>Nombre</td><td>Planta</td><td>Tipo Usuario</td></tr>
+                    <tr style="background-color: blue; color:white"><td>Id</td><td>Nombre</td><td>Planta</td><td>Tipo Usuario</td><td>Editar</td><td>Eliminar</td></tr>
 
                     <% for (Usuario u : lu.getLista()) {%>
                     <tr>
@@ -103,7 +103,9 @@
                         <td><%=u.getPlanta()%></td>
                         <td><%=u.isAdministrador()%></td>
 
+                        <td></td><td><a href="<%=response.encodeURL("editarPerfil.jsp?id=" + u.getId())%>">Editar</a></td>
                         <td></td><td><a href="<%=response.encodeURL("eliminarUsuario?id=" + u.getId())%>">Eliminar</a></td>
+
                     </tr>
                     <% }%>
                 </table>

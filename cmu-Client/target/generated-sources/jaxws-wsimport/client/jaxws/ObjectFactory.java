@@ -29,13 +29,13 @@ public class ObjectFactory {
     private final static QName _RemoveUsuario_QNAME = new QName("http://jaxws.servidor/", "removeUsuario");
     private final static QName _AddMedicion_QNAME = new QName("http://jaxws.servidor/", "addMedicion");
     private final static QName _GetUsuario_QNAME = new QName("http://jaxws.servidor/", "getUsuario");
+    private final static QName _GetMedicionesPlantaResponse_QNAME = new QName("http://jaxws.servidor/", "getMedicionesPlantaResponse");
     private final static QName _GetUsuarios_QNAME = new QName("http://jaxws.servidor/", "getUsuarios");
     private final static QName _EditUsuario_QNAME = new QName("http://jaxws.servidor/", "editUsuario");
     private final static QName _RemoveUsuarioResponse_QNAME = new QName("http://jaxws.servidor/", "removeUsuarioResponse");
     private final static QName _GetMediciones_QNAME = new QName("http://jaxws.servidor/", "getMediciones");
     private final static QName _AddUsuarioResponse_QNAME = new QName("http://jaxws.servidor/", "addUsuarioResponse");
     private final static QName _GetUsuarioLogin_QNAME = new QName("http://jaxws.servidor/", "getUsuarioLogin");
-    private final static QName _GetMedicionResponse_QNAME = new QName("http://jaxws.servidor/", "getMedicionResponse");
     private final static QName _GetUsuarioLoginResponse_QNAME = new QName("http://jaxws.servidor/", "getUsuarioLoginResponse");
     private final static QName _AddMedicionResponse_QNAME = new QName("http://jaxws.servidor/", "addMedicionResponse");
     private final static QName _GetHabitacionesResponse_QNAME = new QName("http://jaxws.servidor/", "getHabitacionesResponse");
@@ -45,11 +45,13 @@ public class ObjectFactory {
     private final static QName _RemoveMedicion_QNAME = new QName("http://jaxws.servidor/", "removeMedicion");
     private final static QName _EditUsuarioResponse_QNAME = new QName("http://jaxws.servidor/", "editUsuarioResponse");
     private final static QName _AddHabitacionResponse_QNAME = new QName("http://jaxws.servidor/", "addHabitacionResponse");
+    private final static QName _GetMedicionesHabitacionResponse_QNAME = new QName("http://jaxws.servidor/", "getMedicionesHabitacionResponse");
     private final static QName _AddHabitacion_QNAME = new QName("http://jaxws.servidor/", "addHabitacion");
     private final static QName _GetNumUsuario_QNAME = new QName("http://jaxws.servidor/", "getNumUsuario");
     private final static QName _GetUsuariosResponse_QNAME = new QName("http://jaxws.servidor/", "getUsuariosResponse");
     private final static QName _Hello_QNAME = new QName("http://jaxws.servidor/", "hello");
     private final static QName _HelloResponse_QNAME = new QName("http://jaxws.servidor/", "helloResponse");
+    private final static QName _GetMedicionesPlanta_QNAME = new QName("http://jaxws.servidor/", "getMedicionesPlanta");
     private final static QName _EditMedicion_QNAME = new QName("http://jaxws.servidor/", "editMedicion");
     private final static QName _GetNumUsuarioResponse_QNAME = new QName("http://jaxws.servidor/", "getNumUsuarioResponse");
     private final static QName _EditHabitacionResponse_QNAME = new QName("http://jaxws.servidor/", "editHabitacionResponse");
@@ -57,9 +59,9 @@ public class ObjectFactory {
     private final static QName _GetHabitacion_QNAME = new QName("http://jaxws.servidor/", "getHabitacion");
     private final static QName _GetMedicionHabitacionResponse_QNAME = new QName("http://jaxws.servidor/", "getMedicionHabitacionResponse");
     private final static QName _GetHabitaciones_QNAME = new QName("http://jaxws.servidor/", "getHabitaciones");
-    private final static QName _GetMedicion_QNAME = new QName("http://jaxws.servidor/", "getMedicion");
     private final static QName _RemoveMedicionResponse_QNAME = new QName("http://jaxws.servidor/", "removeMedicionResponse");
     private final static QName _RemoveHabitacionResponse_QNAME = new QName("http://jaxws.servidor/", "removeHabitacionResponse");
+    private final static QName _GetMedicionesHabitacion_QNAME = new QName("http://jaxws.servidor/", "getMedicionesHabitacion");
     private final static QName _GetUsuarioResponse_QNAME = new QName("http://jaxws.servidor/", "getUsuarioResponse");
     private final static QName _GetMedicionesResponse_QNAME = new QName("http://jaxws.servidor/", "getMedicionesResponse");
     private final static QName _GetMedicionID_QNAME = new QName("http://jaxws.servidor/", "getMedicionID");
@@ -129,14 +131,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetMedicionResponse }
-     * 
-     */
-    public GetMedicionResponse createGetMedicionResponse() {
-        return new GetMedicionResponse();
-    }
-
-    /**
      * Create an instance of {@link GetUsuarioLoginResponse }
      * 
      */
@@ -190,6 +184,14 @@ public class ObjectFactory {
      */
     public GetUsuario createGetUsuario() {
         return new GetUsuario();
+    }
+
+    /**
+     * Create an instance of {@link GetMedicionesPlantaResponse }
+     * 
+     */
+    public GetMedicionesPlantaResponse createGetMedicionesPlantaResponse() {
+        return new GetMedicionesPlantaResponse();
     }
 
     /**
@@ -257,6 +259,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetMedicionesHabitacion }
+     * 
+     */
+    public GetMedicionesHabitacion createGetMedicionesHabitacion() {
+        return new GetMedicionesHabitacion();
+    }
+
+    /**
      * Create an instance of {@link RemoveHabitacionResponse }
      * 
      */
@@ -270,14 +280,6 @@ public class ObjectFactory {
      */
     public GetHabitaciones createGetHabitaciones() {
         return new GetHabitaciones();
-    }
-
-    /**
-     * Create an instance of {@link GetMedicion }
-     * 
-     */
-    public GetMedicion createGetMedicion() {
-        return new GetMedicion();
     }
 
     /**
@@ -345,6 +347,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetMedicionesPlanta }
+     * 
+     */
+    public GetMedicionesPlanta createGetMedicionesPlanta() {
+        return new GetMedicionesPlanta();
+    }
+
+    /**
      * Create an instance of {@link GetUsuariosResponse }
      * 
      */
@@ -390,6 +400,14 @@ public class ObjectFactory {
      */
     public AddHabitacionResponse createAddHabitacionResponse() {
         return new AddHabitacionResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetMedicionesHabitacionResponse }
+     * 
+     */
+    public GetMedicionesHabitacionResponse createGetMedicionesHabitacionResponse() {
+        return new GetMedicionesHabitacionResponse();
     }
 
     /**
@@ -462,6 +480,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMedicionesPlantaResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://jaxws.servidor/", name = "getMedicionesPlantaResponse")
+    public JAXBElement<GetMedicionesPlantaResponse> createGetMedicionesPlantaResponse(GetMedicionesPlantaResponse value) {
+        return new JAXBElement<GetMedicionesPlantaResponse>(_GetMedicionesPlantaResponse_QNAME, GetMedicionesPlantaResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetUsuarios }{@code >}}
      * 
      */
@@ -513,15 +540,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://jaxws.servidor/", name = "getUsuarioLogin")
     public JAXBElement<GetUsuarioLogin> createGetUsuarioLogin(GetUsuarioLogin value) {
         return new JAXBElement<GetUsuarioLogin>(_GetUsuarioLogin_QNAME, GetUsuarioLogin.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetMedicionResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://jaxws.servidor/", name = "getMedicionResponse")
-    public JAXBElement<GetMedicionResponse> createGetMedicionResponse(GetMedicionResponse value) {
-        return new JAXBElement<GetMedicionResponse>(_GetMedicionResponse_QNAME, GetMedicionResponse.class, null, value);
     }
 
     /**
@@ -606,6 +624,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMedicionesHabitacionResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://jaxws.servidor/", name = "getMedicionesHabitacionResponse")
+    public JAXBElement<GetMedicionesHabitacionResponse> createGetMedicionesHabitacionResponse(GetMedicionesHabitacionResponse value) {
+        return new JAXBElement<GetMedicionesHabitacionResponse>(_GetMedicionesHabitacionResponse_QNAME, GetMedicionesHabitacionResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AddHabitacion }{@code >}}
      * 
      */
@@ -648,6 +675,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://jaxws.servidor/", name = "helloResponse")
     public JAXBElement<HelloResponse> createHelloResponse(HelloResponse value) {
         return new JAXBElement<HelloResponse>(_HelloResponse_QNAME, HelloResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMedicionesPlanta }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://jaxws.servidor/", name = "getMedicionesPlanta")
+    public JAXBElement<GetMedicionesPlanta> createGetMedicionesPlanta(GetMedicionesPlanta value) {
+        return new JAXBElement<GetMedicionesPlanta>(_GetMedicionesPlanta_QNAME, GetMedicionesPlanta.class, null, value);
     }
 
     /**
@@ -714,15 +750,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetMedicion }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://jaxws.servidor/", name = "getMedicion")
-    public JAXBElement<GetMedicion> createGetMedicion(GetMedicion value) {
-        return new JAXBElement<GetMedicion>(_GetMedicion_QNAME, GetMedicion.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link RemoveMedicionResponse }{@code >}}
      * 
      */
@@ -738,6 +765,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://jaxws.servidor/", name = "removeHabitacionResponse")
     public JAXBElement<RemoveHabitacionResponse> createRemoveHabitacionResponse(RemoveHabitacionResponse value) {
         return new JAXBElement<RemoveHabitacionResponse>(_RemoveHabitacionResponse_QNAME, RemoveHabitacionResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetMedicionesHabitacion }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://jaxws.servidor/", name = "getMedicionesHabitacion")
+    public JAXBElement<GetMedicionesHabitacion> createGetMedicionesHabitacion(GetMedicionesHabitacion value) {
+        return new JAXBElement<GetMedicionesHabitacion>(_GetMedicionesHabitacion_QNAME, GetMedicionesHabitacion.class, null, value);
     }
 
     /**

@@ -33,16 +33,6 @@ public class ListarMediciones {
         return mediciones;
     }
 
-    public List<String> getLista(String habitacion) {
-        List<String> medicionesPorHabitacion = null;
-        
-        for (Medicion m:  mediciones){
-            if (m.getHabitacion().equals(habitacion)){
-                 medicionesPorHabitacion.add(m.toString());
-            }
-           
-        }
-        return medicionesPorHabitacion;
-    }
+   
 
 }

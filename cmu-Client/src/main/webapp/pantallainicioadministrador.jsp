@@ -136,6 +136,19 @@
                 </legend>
 
             </div>
+                    
+            <div class="col-lg-3">
+                <legend>
+                    <a class="nav-link" href="<%=response.encodeRedirectURL("pantalltemfiltradas.jsp")%>"/>
+                    <center>
+                        Temperatura Habitación
+                        <br><hr><br>
+                        <img width="200px" height="200px" src="images/temperaturahabitacion.png">
+                    </center>
+                    </a> 
+                </legend>
+
+            </div>
         </div>
 
     </body>

@@ -16,6 +16,15 @@
     } else {
         session.setAttribute("listamediciones", null);
     }
+
+    String cadenaTemperaturas = "";
+    String cadenaFechas = "";
+    for (Medicion m : mediciones.getLista()) {
+
+        cadenaTemperaturas += m.getTemperatura() + ";";
+        cadenaFechas += m.getFecha().toString() + ";";
+
+    }
 %>
 
 <!DOCTYPE html>
@@ -40,6 +49,23 @@
         <link rel="stylesheet" type="text/css" href="css/util.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <!--===============================================================================================-->
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/highcharts.js" type="text/javascript"></script>
+        <!-- - -->
+        <script type="text/javascript">
+            var dat1 = cadenaTemperaturas;
+        </script>
+        <!-- - -->
+        <script type="text/javascript">
+            var chart1;
+            $(document).ready(function () {
+                chart1 = new Highcharts.Chart({
+                    chart: {renderTo: 'container1'},
+                    series: [{data: dat1}]
+                });
+            });
+        </script>
+
     </head>
     <body>
 
@@ -52,12 +78,13 @@
                     <div class="card-body" align="center">
                         <h2 class="card-title">Listado Temperaturas</h2>
                     </div>
-
-                    <div class="field" id="searchform">
-                        <input type="text" id="searchterm" placeholder="Introduce el num de habitación" />
-                        <button type="button" id="search">Buscar</button>
-                    </div>
+                    <br>
+                    <br>
                 </div>
+                <div>
+                    <div id="container1" style="width: 700px; height: 400px "></div>
+                </div>
+
                 <div class="wrap-table100">
                     <div class="table">
                         <div class="row header">

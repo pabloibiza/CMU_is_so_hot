@@ -7,16 +7,16 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para getMedicion complex type.
+ * <p>Clase Java para getMedicionesPlanta complex type.
  * 
  * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
- * &lt;complexType name="getMedicion">
+ * &lt;complexType name="getMedicionesPlanta">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="habitacion" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="planta" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -26,35 +26,35 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getMedicion", propOrder = {
-    "habitacion"
+@XmlType(name = "getMedicionesPlanta", propOrder = {
+    "planta"
 })
-public class GetMedicion {
+public class GetMedicionesPlanta {
 
-    protected String habitacion;
+    protected String planta;
 
     /**
-     * Obtiene el valor de la propiedad habitacion.
+     * Obtiene el valor de la propiedad planta.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getHabitacion() {
-        return habitacion;
+    public String getPlanta() {
+        return planta;
     }
 
     /**
-     * Define el valor de la propiedad habitacion.
+     * Define el valor de la propiedad planta.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setHabitacion(String value) {
-        this.habitacion = value;
+    public void setPlanta(String value) {
+        this.planta = value;
     }
 
 }

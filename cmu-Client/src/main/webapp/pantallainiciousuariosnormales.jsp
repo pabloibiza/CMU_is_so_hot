@@ -36,7 +36,7 @@
             body{
                 background-color: #DCF9E4;
             }
-            
+
         </style>
     </head>
 
@@ -71,6 +71,19 @@
         <div class="editProfile" align="center">
             <div><a class="nav-link" href="<%=response.encodeRedirectURL("editarperfil.jsp")%>"> Editar Perfil </a>  </div>
             <div> <img src="images/editProfile.png"> </div>
+
+        </div>
+
+        <div class="col-lg-3">
+            <legend>
+                <a class="nav-link" href="<%=response.encodeRedirectURL("pantallatemperaturasusuarios.jsp")%>"/>
+                <center>
+                    Temperatura Habitación
+                    <br><hr><br>
+                    <img width="200px" height="200px" src="images/temperaturahabitacion.png">
+                </center>
+                </a> 
+            </legend>
 
         </div>
     </body>

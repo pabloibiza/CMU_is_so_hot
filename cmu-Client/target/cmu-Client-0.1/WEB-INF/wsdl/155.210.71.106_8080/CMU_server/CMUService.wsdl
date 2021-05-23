@@ -88,6 +88,12 @@
 <message name="getMedicionIDResponse">
 <part name="parameters" element="tns:getMedicionIDResponse"/>
 </message>
+<message name="getMedicionesPlanta">
+<part name="parameters" element="tns:getMedicionesPlanta"/>
+</message>
+<message name="getMedicionesPlantaResponse">
+<part name="parameters" element="tns:getMedicionesPlantaResponse"/>
+</message>
 <message name="addHabitacion">
 <part name="parameters" element="tns:addHabitacion"/>
 </message>
@@ -100,11 +106,11 @@
 <message name="getHabitacionesResponse">
 <part name="parameters" element="tns:getHabitacionesResponse"/>
 </message>
-<message name="getMedicion">
-<part name="parameters" element="tns:getMedicion"/>
+<message name="getMedicionesHabitacion">
+<part name="parameters" element="tns:getMedicionesHabitacion"/>
 </message>
-<message name="getMedicionResponse">
-<part name="parameters" element="tns:getMedicionResponse"/>
+<message name="getMedicionesHabitacionResponse">
+<part name="parameters" element="tns:getMedicionesHabitacionResponse"/>
 </message>
 <message name="removeHabitacion">
 <part name="parameters" element="tns:removeHabitacion"/>
@@ -181,6 +187,10 @@
 <input wsam:Action="http://jaxws.servidor/CMUService/getMedicionIDRequest" message="tns:getMedicionID"/>
 <output wsam:Action="http://jaxws.servidor/CMUService/getMedicionIDResponse" message="tns:getMedicionIDResponse"/>
 </operation>
+<operation name="getMedicionesPlanta">
+<input wsam:Action="http://jaxws.servidor/CMUService/getMedicionesPlantaRequest" message="tns:getMedicionesPlanta"/>
+<output wsam:Action="http://jaxws.servidor/CMUService/getMedicionesPlantaResponse" message="tns:getMedicionesPlantaResponse"/>
+</operation>
 <operation name="addHabitacion">
 <input wsam:Action="http://jaxws.servidor/CMUService/addHabitacionRequest" message="tns:addHabitacion"/>
 <output wsam:Action="http://jaxws.servidor/CMUService/addHabitacionResponse" message="tns:addHabitacionResponse"/>
@@ -189,9 +199,9 @@
 <input wsam:Action="http://jaxws.servidor/CMUService/getHabitacionesRequest" message="tns:getHabitaciones"/>
 <output wsam:Action="http://jaxws.servidor/CMUService/getHabitacionesResponse" message="tns:getHabitacionesResponse"/>
 </operation>
-<operation name="getMedicion">
-<input wsam:Action="http://jaxws.servidor/CMUService/getMedicionRequest" message="tns:getMedicion"/>
-<output wsam:Action="http://jaxws.servidor/CMUService/getMedicionResponse" message="tns:getMedicionResponse"/>
+<operation name="getMedicionesHabitacion">
+<input wsam:Action="http://jaxws.servidor/CMUService/getMedicionesHabitacionRequest" message="tns:getMedicionesHabitacion"/>
+<output wsam:Action="http://jaxws.servidor/CMUService/getMedicionesHabitacionResponse" message="tns:getMedicionesHabitacionResponse"/>
 </operation>
 <operation name="removeHabitacion">
 <input wsam:Action="http://jaxws.servidor/CMUService/removeHabitacionRequest" message="tns:removeHabitacion"/>
@@ -334,6 +344,15 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="getMedicionesPlanta">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="addHabitacion">
 <soap:operation soapAction=""/>
 <input>
@@ -352,7 +371,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getMedicion">
+<operation name="getMedicionesHabitacion">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

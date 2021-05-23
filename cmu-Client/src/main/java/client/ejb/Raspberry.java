@@ -4,7 +4,7 @@ De momento solo se considera la temperatura de su CPU.
  */
 package client.ejb;
 
-
+import client.RpiDTO;
 import client.jaxws.CMUService;
 import client.jaxws.CMUService_Service;
 import client.jaxws.Medicion;
@@ -20,8 +20,6 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.ws.WebServiceRef;
 
-
-
 /**
  *
  * @author fsern, pablo
@@ -32,21 +30,19 @@ public class Raspberry {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
     private CMUService_Service service;
 
-   
-  
-    private String habitacion;
-    private String  temp;  
-    private String  press;  
-    private Date fecha;
-    
+    private String habitacion = "319";
+    private String temp;
+    private String press;
+    private GregorianCalendar fecha;
+
     public String getHabitacion() {
         return habitacion;
     }
-    
-    public void setHabitacion(String habitacion){
+
+    public void setHabitacion(String habitacion) {
         this.habitacion = habitacion;
     }
-    
+
     public String getTemp() {
         return temp;
     }
@@ -63,17 +59,18 @@ public class Raspberry {
         this.press = press;
     }
 
-    public Date getFecha() {
+    public GregorianCalendar getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(GregorianCalendar fecha) {
         this.fecha = fecha;
     }
 
-    public void parsearEntrada(String entrada){
+    /*
+    public void parsearEntrada(String entrada) {
         Scanner sc = new Scanner(entrada).useDelimiter(";");
-        
+
         setHabitacion(sc.next());
         System.out.println("LA HABITACION ES: " + getHabitacion());
         setTemp(sc.next());
@@ -84,49 +81,41 @@ public class Raspberry {
         System.out.println(fecha_sin_parsear);
         setFecha(parsearFecha(fecha_sin_parsear));
         System.out.println("LA FECHA ES: " + getFecha().toString());
-        
+
     }
-    
-    public Date parsearFecha(String entrada){
-        System.out.println(entrada);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date fechaParseada = null;
-        try {
-            fechaParseada = sdf.parse(entrada);
-        } catch (ParseException ex) {
-            Logger.getLogger(Raspberry.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return fechaParseada;
-    }
-    
+     */
+
+ 
     public void enviarMedicion() throws DatatypeConfigurationException {
         GregorianCalendar date = new GregorianCalendar();
-        date.setTime(this.getFecha());
+        String planta="";
+        setFecha(date);
         Medicion medicion = new Medicion();
-        medicion.setTemperatura("11.2");
-        medicion.setFecha(DatatypeFactory.newInstance().newXMLGregorianCalendar(date));
-        medicion.setHabitacion("119");
-        medicion.setPlanta("Primera");
+        medicion.setTemperatura(this.getTemp());
+        medicion.setFecha(DatatypeFactory.newInstance().newXMLGregorianCalendar(this.getFecha()));
+        medicion.setHabitacion(this.getHabitacion());
         
+        String[] piso = this.getHabitacion().split("");
         
+        if(piso[0].equals("1")){
+            planta = "Primera";
+        } else if (piso[0].equals("2")){
+            planta = "Segunda";
+        } else if (piso[0].equals("3")){
+            planta = "Tercera";
+        }
         
-        
-        
+        medicion.setPlanta(planta);
+
         try { // Call Web Service Operation
             CMUService port = service.getCMUServicePort();
             // TODO initialize WS operation arguments here
-           
+            
             port.addMedicion(medicion);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
 
-      
-
-
     }
-    
-    
-    
+
 }

@@ -32,8 +32,6 @@
 
 <xs:element name="getHabitacionesResponse" type="tns:getHabitacionesResponse"/>
 
-<xs:element name="getMedicion" type="tns:getMedicion"/>
-
 <xs:element name="getMedicionHabitacion" type="tns:getMedicionHabitacion"/>
 
 <xs:element name="getMedicionHabitacionResponse" type="tns:getMedicionHabitacionResponse"/>
@@ -42,9 +40,15 @@
 
 <xs:element name="getMedicionIDResponse" type="tns:getMedicionIDResponse"/>
 
-<xs:element name="getMedicionResponse" type="tns:getMedicionResponse"/>
-
 <xs:element name="getMediciones" type="tns:getMediciones"/>
+
+<xs:element name="getMedicionesHabitacion" type="tns:getMedicionesHabitacion"/>
+
+<xs:element name="getMedicionesHabitacionResponse" type="tns:getMedicionesHabitacionResponse"/>
+
+<xs:element name="getMedicionesPlanta" type="tns:getMedicionesPlanta"/>
+
+<xs:element name="getMedicionesPlantaResponse" type="tns:getMedicionesPlantaResponse"/>
 
 <xs:element name="getMedicionesResponse" type="tns:getMedicionesResponse"/>
 
@@ -163,13 +167,13 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getMedicion">
+<xs:complexType name="getMedicionesHabitacion">
 <xs:sequence>
 <xs:element name="habitacion" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getMedicionResponse">
+<xs:complexType name="getMedicionesHabitacionResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:medicion" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
@@ -192,6 +196,18 @@
 <xs:complexType name="getHabitacionesResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:habitacion" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMedicionesPlanta">
+<xs:sequence>
+<xs:element name="planta" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMedicionesPlantaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:medicion" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

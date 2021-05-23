@@ -11,9 +11,11 @@ import client.jaxws.CMUService_Service;
 import client.jaxws.Usuario;
 import client.websocket.WebSocketManager;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,15 +33,15 @@ import javax.xml.ws.WebServiceRef;
 public class AddUsuario extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
-    private CMUService_Service service;  
-    
+    private CMUService_Service service;
+
     private WebSocketManager websocket;
 
     @PostConstruct
     public void init() {
         websocket = WebSocketManager.getInstance();
     }
-    
+
     private boolean administrador;
 
     /**
@@ -60,46 +62,40 @@ public class AddUsuario extends HttpServlet {
         String contrasena = request.getParameter("contrasena");
         String planta = request.getParameter("planta");
         String tipoUsuario = request.getParameter("tipoUsuario");
-        
-        if (tipoUsuario.equals("administrador")){
+        List<Usuario> usuarios = null;
+
+        if (tipoUsuario.equals("administrador")) {
             administrador = true;
-        }      
-        
+        }
+
         Usuario usuario = new Usuario();
+       
         usuario.setNombre(nombre);
         usuario.setContrasena(TextToHash.getSHA256(contrasena));
         usuario.setPlanta(planta);
         usuario.setAdministrador(administrador);
-
         
+
         try { // Call Web Service Operation
-           CMUService port = service.getCMUServicePort();
+            CMUService port = service.getCMUServicePort();
             // TODO initialize WS operation arguments here
-          
+
             port.addUsuario(usuario);
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
-        
+
         String msj = "<tr><td>" + nombre + "</td><td>" + planta
                 + "</td><td>" + administrador + "</td><td><a href=\"#\"><b>Eliminar</b></td></tr>";
-        
+
         System.out.println(msj);
 
         if (websocket != null) {
             websocket.sendMensaje(msj);
         }
 
-        
-         
-       
-
-
         response.sendRedirect("pantallaregistrousuarios.jsp");
-        
 
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

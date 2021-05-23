@@ -54,6 +54,7 @@ public class Login extends HttpServlet {
 
         String nombreUsuario = request.getParameter("login");
         String pass = TextToHash.getSHA256(request.getParameter("pass"));
+        Long id = 0L;
 
         try { // Call Web Service Operation
             CMUService port = service.getCMUServicePort();
@@ -71,7 +72,9 @@ public class Login extends HttpServlet {
 
         for (Usuario u : usuarios) {
             if (u.getNombre().equals(nombreUsuario) && u.getContrasena().equals(pass)) {
-                session.setAttribute("login", nombreUsuario);
+                session.setAttribute("login", nombreUsuario); 
+                id = u.getId();
+                
                
                 existeUsuario = true;
                 if (u.isAdministrador()) {
@@ -83,12 +86,15 @@ public class Login extends HttpServlet {
 
                
             }
+            
 
         }
 
         if (!existeUsuario) {
             session.setAttribute("msg", "Usuario y/o Contraseña NO VÁLIDOS");
             url = "index.jsp";
+        }else{
+            session.setAttribute("id", id);
         }
 
         response.sendRedirect(response.encodeURL(url));

@@ -54,6 +54,7 @@ public class GetMediciones extends HttpServlet {
             if (mediciones == null) {
                 mediciones = new ArrayList();
             }
+            
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
