@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> {
 
-    @PersistenceContext(unitName = "CMU_is_so_hott_PU")
+    @PersistenceContext(unitName = "CMU_is_so_hot_PU")
     private EntityManager em;
 
     @Override

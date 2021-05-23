@@ -11,6 +11,8 @@ import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import servidor.bd.HabitacionFacade;
+import servidor.bd.Habitacion;
 import servidor.bd.Medicion;
 import servidor.bd.MedicionFacade;
 import servidor.bd.Usuario;
@@ -24,39 +26,40 @@ import servidor.bd.UsuarioFacade;
 
 public class CMUService {
 
-    @EJB UsuarioFacade bd;
+    @EJB UsuarioFacade us;
     @EJB MedicionFacade med;
+    @EJB HabitacionFacade hab;
     
     @WebMethod(operationName = "addUsuario")
     public void addUsuario(@WebParam(name = "usuario") Usuario usuario) {
-       bd.create(usuario);
+       us.create(usuario);
     }
 
     @WebMethod(operationName = "getUsuario")
-    public Usuario getUsuario(@WebParam(name = "id") Long _id) {
-        Usuario p = null;
-        p = bd.find(_id);
-        return p;
+    public Usuario getUsuario(@WebParam(name = "id") Long id) {
+        Usuario u = null;
+        u = us.find(id);
+        return u;
     }
     
     @WebMethod(operationName = "editUsuario")
-    public void editUsuario(@WebParam(name = "usuario") Usuario _usuario) {
-        bd.edit(_usuario);
+    public void editUsuario(@WebParam(name = "usuario") Usuario usuario) {
+        us.edit(usuario);
     }
 
     @WebMethod(operationName = "removeUsuario")
-    public void removeUsuario(@WebParam(name = "usuario") Usuario _usuario) {
-        bd.remove(_usuario);
+    public void removeUsuario(@WebParam(name = "usuario") Usuario usuario) {
+        us.remove(usuario);
     }
     
     @WebMethod(operationName = "getNumUsuario")
     public int getNumUsuario() {
-        return bd.count();
+        return us.count();
     }
     
     @WebMethod(operationName = "getUsuarios")
     public List<Usuario> getUsuarios() {
-        List<Usuario> usuario = bd.findAll();
+        List<Usuario> usuario = us.findAll();
         if (usuario==null){
             usuario = new ArrayList();
         }
@@ -64,10 +67,10 @@ public class CMUService {
     }
     
     @WebMethod(operationName = "getUsuarioLogin")
-    public Usuario getUsuarioLogin(@WebParam(name = "nombre") String _nombre) {
-        Usuario p = null;
-        p = bd.find(_nombre);
-        return p;
+    public Usuario getUsuarioLogin(@WebParam(name = "nombre") String nombre) {
+        Usuario u = null;
+        u = us.find(nombre);
+        return u;
     }
     
     @WebMethod(operationName = "addMedicion")
@@ -75,33 +78,88 @@ public class CMUService {
        med.create(medicion);
     }
     
-    @WebMethod(operationName = "getMedicion")
-    public Medicion getMedicion(@WebParam(name = "id") Long _id) {
-        Medicion p = null;
-        p = med.find(_id);
-        return p;
+    @WebMethod(operationName = "getMedicionID")
+    public Medicion getMedicionID(@WebParam(name = "id") Long id) {
+        Medicion medi = null;
+        medi = med.find(id);
+        return medi;
+    }
+    
+    @WebMethod(operationName = "getMedicionesHabitacion")
+    public List<Medicion> getMedicionesHabitacion(@WebParam(name = "habitacion") String habitacion) {
+        List<Medicion> mediciones = med.findMediciones(habitacion);
+        if (mediciones==null){
+            mediciones = new ArrayList();
+        }
+        return mediciones;
+    }
+    
+    @WebMethod(operationName = "getMedicionesPlanta")
+    public List<Medicion> getMedicionesPlanta(@WebParam(name = "planta") String planta) {
+        List<Medicion> mediciones = med.findMedicionesPlanta(planta);
+        if (mediciones==null){
+            mediciones = new ArrayList();
+        }
+        return mediciones;
+    }
+    
+    @WebMethod(operationName = "getMedicionHabitacion")
+    public Medicion getMedicionHabitacion(@WebParam(name = "habitacion") String habitacion) {
+        Medicion m = null;
+        m = med.find(habitacion);
+        return m;
     }
     
     @WebMethod(operationName = "editMedicion")
-    public void editMedicion(@WebParam(name = "medicion") Medicion _medicion) {
-        med.edit(_medicion);
+    public void editMedicion(@WebParam(name = "medicion") Medicion medicion) {
+        med.edit(medicion);
     }
     
     @WebMethod(operationName = "removeMedicion")
-    public void removeMedicion(@WebParam(name = "medicion") Medicion _medicion) {
-        med.remove(_medicion);
+    public void removeMedicion(@WebParam(name = "medicion") Medicion medicion) {
+        med.remove(medicion);
     }
         
     @WebMethod(operationName = "getMediciones")
     public List<Medicion> getMediciones() {
-        List<Medicion> medicion = med.findAll();
-        if (medicion==null){
-            medicion = new ArrayList();
+        List<Medicion> mediciones = med.findAll();
+        if (mediciones==null){
+            mediciones = new ArrayList();
         }
-        return medicion;
+        return mediciones;
     }
     
+    @WebMethod(operationName = "addHabitacion")
+    public void addHabitacion(@WebParam(name = "habitacion") Habitacion habitacion) {
+       hab.create(habitacion);
+    }
         
+    @WebMethod(operationName = "getHabitacion")
+    public Habitacion getHabitacion(@WebParam(name = "id") Long id) {
+        Habitacion h = null;
+        h = hab.find(id);
+        return h;
+    }
+    
+    @WebMethod(operationName = "editHabitacion")
+    public void editHabitacion(@WebParam(name = "habitacion") Habitacion habitacion) {
+        hab.edit(habitacion);
+    }
+    
+    @WebMethod(operationName = "removeHabitacion")
+    public void removeHabitacion(@WebParam(name = "habitacion") Habitacion habitacion) {
+        hab.remove(habitacion);
+    }
+    
+    @WebMethod(operationName = "getHabitaciones")
+    public List<Habitacion> getHabitaciones() {
+        List<Habitacion> habitacion = hab.findAll();
+        if (habitacion==null){
+            habitacion = new ArrayList();
+        }
+        return habitacion;
+    }
+    
     /**
      * This is a sample web service operation
      */

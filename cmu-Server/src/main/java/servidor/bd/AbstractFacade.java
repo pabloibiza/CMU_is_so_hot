@@ -7,6 +7,9 @@ package servidor.bd;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -36,6 +39,24 @@ public abstract class AbstractFacade<T> {
 
     public T find(Object id) {
         return getEntityManager().find(entityClass, id);
+    }
+    
+    public List<T> findMediciones(Object habitacion) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root<T> c = cq.from(entityClass);
+        cq.select(c);
+        cq.where(cb.equal(c.get("habitacion"), habitacion));
+        return getEntityManager().createQuery(cq).getResultList();
+    }
+    
+        public List<T> findMedicionesPlanta(Object planta) {
+        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery cq = cb.createQuery();
+        Root<T> c = cq.from(entityClass);
+        cq.select(c);
+        cq.where(cb.equal(c.get("planta"), planta));
+        return getEntityManager().createQuery(cq).getResultList();
     }
 
     public List<T> findAll() {

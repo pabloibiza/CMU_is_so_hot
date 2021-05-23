@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -25,6 +26,8 @@ public class Medicion implements Serializable {
     private Long id;
     private String temperatura;
     private Date fecha;
+    private String habitacion;
+    private String planta;
 
     public Long getId() {
         return id;
@@ -50,6 +53,23 @@ public class Medicion implements Serializable {
         this.fecha = fecha;
     }
 
+    public String getHabitacion() {
+        return habitacion;
+    }
+
+    public void setHabitacion(String habitacion) {
+        this.habitacion = habitacion;
+    }
+
+    public String getPlanta() {
+        return planta;
+    }
+
+    public void setPlanta(String planta) {
+        this.planta = planta;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -75,4 +95,9 @@ public class Medicion implements Serializable {
         return "servidor.bd.Medicion[ id=" + id + " ]";
     }
     
+
+    public String toStringJSON() {
+        return temperatura + ';' + fecha;
+    }
+
 }
