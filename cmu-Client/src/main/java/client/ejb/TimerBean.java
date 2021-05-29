@@ -14,24 +14,28 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author fsern, pablo
+ * @author  Pablo
  */
 @Stateless
 public class TimerBean {
 
-    @EJB MqttManagerBean mqttManager;
-    @EJB Sonoff sonoff;
+    @EJB
+    MqttManagerBean mqttManager;
+    @EJB
+    Termostato sonoff;
 
-    
-   //@Schedule(hour = "*", minute = "*/5", second = "7", persistent = false)
+    @Schedule(hour = "*", minute = "*", second = "*/30", persistent = false)
     public void toggleSonoffTimer() {
-        System.out.println("==== TIMER ==== ");
-        if (sonoff.getEstado()){
+        String estado;
+        String topic_estado;
+        topic_estado = Topic.TOPIC_SONOFF_CMND_POWER.replace("*", "2");
+        if (sonoff.getEstado()) {
             sonoff.setEstado(false);
-        }else{
+               mqttManager.publish(topic_estado, "OFF", false);
+        } else {
             sonoff.setEstado(true);
+            mqttManager.publish(topic_estado, "ON", false);
         }
-        mqttManager.publish(Topic.TOPIC_SONOFF_CMND_POWER, String.valueOf(sonoff.getEstado()), false);
     }
 
 }

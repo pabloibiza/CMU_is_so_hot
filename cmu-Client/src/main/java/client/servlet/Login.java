@@ -25,16 +25,13 @@ import javax.xml.ws.WebServiceRef;
 
 /**
  *
- * @author oscar
+ * @author Oscar
  */
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
     private CMUService_Service service;
-    private List<Usuario> usuarios = null;
-    private String url ;
-    private boolean existeUsuario = false;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,7 +46,11 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-
+        boolean existeUsuario = false;
+        
+        
+        List<Usuario> usuarios = null;
+        String url="";
         HttpSession session = request.getSession(true);
 
         String nombreUsuario = request.getParameter("login");
@@ -72,28 +73,29 @@ public class Login extends HttpServlet {
 
         for (Usuario u : usuarios) {
             if (u.getNombre().equals(nombreUsuario) && u.getContrasena().equals(pass)) {
-                session.setAttribute("login", nombreUsuario); 
+                session.setAttribute("login", nombreUsuario);
                 id = u.getId();
                 
-               
+
                 existeUsuario = true;
                 if (u.isAdministrador()) {
                     url = "pantallainicioadministrador.jsp";
+                    session.setAttribute("admin", "admin");
 
-                } else{
-                     url = "pantallainiciousuariosnormales.jsp";
+                } else {
+                    url = "pantallainiciousuariosnormales.jsp";
+                    session.setAttribute("admin", "normal");
                 }
 
-               
+                break;
             }
-            
 
         }
 
         if (!existeUsuario) {
             session.setAttribute("msg", "Usuario y/o Contraseña NO VÁLIDOS");
             url = "index.jsp";
-        }else{
+        } else {
             session.setAttribute("id", id);
         }
 

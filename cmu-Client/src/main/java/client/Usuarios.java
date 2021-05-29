@@ -13,7 +13,7 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author oscar
+ * @author Oscar
  */
 @Stateless
 public class Usuarios {

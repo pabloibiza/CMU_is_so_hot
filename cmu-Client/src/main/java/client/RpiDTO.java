@@ -1,7 +1,3 @@
-/*
-Clase auxiliar, solo se usa para parsear el json 
-recibido en el topic ".../rpi/cpuTemp".
- */
 package client;
 
 import com.google.gson.Gson;
@@ -9,11 +5,11 @@ import com.google.gson.Gson;
 
 /**
  *
- * @author fsern
+ * @author Pablo
  */
 
 public class RpiDTO {
-    private String  temp    = "nulo";  // tª del BMP280
+    private String  temp    = "nulo"; 
     private String  press   = "nulo"; 
     private String  habitacion   = "nulo"; 
     private String  fecha   = "nulo"; 

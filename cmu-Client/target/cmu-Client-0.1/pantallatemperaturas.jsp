@@ -1,7 +1,7 @@
 <%-- 
     Document   : pantallatemperaturas
     Created on : 03-may-2021, 15:21:59
-    Author     : oscar
+    Author     : Oscar
 --%>
 
 <%@page import="client.jaxws.Medicion"%>
@@ -9,6 +9,20 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
+    HttpSession misession = (HttpSession) request.getSession();
+    session.setAttribute("admin", misession.getAttribute("admin"));
+    session.setAttribute("login", misession.getAttribute("login"));
+
+   
+    //Comprobación para que el cliente no pueda entrar en jsp de administrador
+    if ((String) session.getAttribute("login") == null || (String) session.getAttribute("admin") == null) {
+        response.sendRedirect(response.encodeURL("index.jsp"));
+    } else {
+        if (!session.getAttribute("admin").equals("admin")) {
+            response.sendRedirect(response.encodeRedirectURL("pantallainiciousuariosnormales.jsp"));
+        }
+    }
+
     ListarMediciones mediciones = (ListarMediciones) session.getAttribute("listamediciones");
     if (mediciones == null) {
         mediciones = new ListarMediciones();
@@ -49,48 +63,80 @@
         <link rel="stylesheet" type="text/css" href="css/util.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <!--===============================================================================================-->
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/highcharts.js" type="text/javascript"></script>
-        <!-- - -->
-        <script type="text/javascript">
-            var dat1 = cadenaTemperaturas;
-        </script>
-        <!-- - -->
-        <script type="text/javascript">
-            var chart1;
-            $(document).ready(function () {
-                chart1 = new Highcharts.Chart({
-                    chart: {renderTo: 'container1'},
-                    series: [{data: dat1}]
-                });
-            });
-        </script>
+
+
+        <style type="text/css">
+            .boton_personalizado{
+                width:80px;
+                height:45px;
+                text-decoration: none;
+                padding: 7px;
+                font-weight: 600;
+                font-size: 20px;
+                color: #ffffff;
+                background-color: #1883ba;
+                border-radius: 6px;
+                border: 2px solid #0016b0;
+                align-content: rigth;
+                margin-top: 10px;
+                position: absolute;
+                right:100px;
+            }
+            .boton_personalizado:hover{
+                color: #1883ba;
+                background-color: #ffffff;
+            }
+
+            .boton_cerrarSesion{
+                width:80px;
+                height:45px;
+                text-decoration: none;
+                padding: 7px;
+                font-weight: 600;
+                font-size: 20px;
+                color: #ffffff;
+                background-color: #FF0000;
+                border-radius: 6px;
+                border: 2px solid #0016b0;
+                margin-top: 10px;
+                position: absolute;
+                right:10px;
+            }
+            .boton_cerrarSesion:hover{
+                color: #1883ba;
+                background-color: #ffffff;
+            }
+        </style>
+
 
     </head>
     <body>
+        <div class="boton_personalizado" >
+            <div><button onclick="pageRedirect()">Volver</button></div>
+        </div>
+        <div class="boton_cerrarSesion" >
+            <div><button onclick="cerrarSesion()">Logout</button></div>
 
+        </div>
 
         <div class="limiter">
 
             <div class="container-table100">
+
                 <div  style="width:rem;" align="center">
                     <img class="card-img-left"  src="images/logo.png" align="left" alt="Card image cap">
                     <div class="card-body" align="center">
                         <h2 class="card-title">Listado Temperaturas</h2>
+
                     </div>
                     <br>
                     <br>
                 </div>
-                <div>
-                    <div id="container1" style="width: 700px; height: 400px "></div>
-                </div>
+
 
                 <div class="wrap-table100">
                     <div class="table">
-                        <div class="row header">
-                            <div class="cell">
-                                Id
-                            </div>
+                        <div class="row header">        
                             <div class="cell">
                                 Temperatura
                             </div>
@@ -109,15 +155,10 @@
 
                         </div>
 
-
-
                         <% for (Medicion m : mediciones.getLista()) {%>
-                        <div class="row">
-                            <div class="cell" data-title="Id">
-                                <%=m.getId()%>
-                            </div>
+                        <div class="row">                  
                             <div class="cell" data-title="Temperatura">
-                                <%=m.getTemperatura()%>
+                                <%=m.getTemperatura()%> ºC
                             </div>
                             <div class="cell" data-title="Fecha">
                                 <%=m.getFecha()%>
@@ -154,7 +195,15 @@
         <script src="js/main.js"></script>
         <!--===============================================================================================-->
         <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script>
+                function pageRedirect() {
+                    window.location.replace("pantallainicioadministrador.jsp");
+                }
 
+                function cerrarSesion() {
+                    window.location.replace("index.jsp");
+                }
+        </script>
     </body>
 </html>
 

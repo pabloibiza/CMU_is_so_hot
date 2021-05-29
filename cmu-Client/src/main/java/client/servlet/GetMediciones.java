@@ -23,7 +23,7 @@ import javax.xml.ws.WebServiceRef;
 
 /**
  *
- * @author oscar
+ * @author Oscar
  */
 @WebServlet(name = "GetMediciones", urlPatterns = {"/getMediciones"})
 public class GetMediciones extends HttpServlet {
@@ -61,7 +61,8 @@ public class GetMediciones extends HttpServlet {
 
         ListarMediciones listamediciones = new ListarMediciones(mediciones);
         session.setAttribute("listamediciones", listamediciones);
-        response.sendRedirect("pantallatemperaturas.jsp");
+        response.sendRedirect(response.encodeRedirectURL("pantallatemperaturas.jsp"));
+        
 
     }
 

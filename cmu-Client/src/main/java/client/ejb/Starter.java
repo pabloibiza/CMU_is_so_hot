@@ -14,20 +14,22 @@ import javax.ejb.Startup;
 
 /**
  *
- * @author fsern, pablo
+ * @author  Pablo
  */
 @Singleton
 @Startup
 public class Starter {
 
     @EJB MqttManagerBean mqtt;
-    @EJB Sonoff sonoff;
+    @EJB Termostato sonoff;
     
     @PostConstruct
     public void sayHello(){
         System.out.println("01. Starter =======> init");
-        
-        mqtt.addTopicToSubscribe(Topic.TOPIC_SONOFF_STAT_POWER);
+       
+        mqtt.addTopicToSubscribe(Topic.TOPIC_SONOFF_STAT_PLANTA_1);
+        mqtt.addTopicToSubscribe(Topic.TOPIC_SONOFF_STAT_PLANTA_2);
+        mqtt.addTopicToSubscribe(Topic.TOPIC_SONOFF_STAT_PLANTA_3);
         mqtt.addTopicToSubscribe(Topic.TOPIC_RASPI_MEDICION);
         mqtt.connectToMqttBroker();
     }

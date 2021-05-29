@@ -19,6 +19,7 @@ C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sou
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\EditUsuarioResponse.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\GetMedicionesHabitacionResponse.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\EditUsuario.java
+C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\ejb\MedicionTermometro.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\GetMedicionIDResponse.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\mqtt\MqttListener.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\Usuarios.java
@@ -39,16 +40,15 @@ C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sou
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\EditHabitacionResponse.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\AddHabitacionResponse.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\EditHabitacion.java
+C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\ejb\Termostato.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\servlet\SwitchSonoff.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\AddHabitacion.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\GetMedicionesPlantaResponse.java
-C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\ejb\Sonoff.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\ejb\TimerBean.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\servlet\Login.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\ListarUsuarios.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\GetNumUsuario.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\websocket\WebSocketManager.java
-C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\ejb\Raspberry.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\src\main\java\client\mqtt\MqttManagerBean.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\CMUService.java
 C:\Users\oscar\OneDrive\Escritorio\CMU_is_so_hot\cmu-Client\target\generated-sources\jaxws-wsimport\client\jaxws\RemoveMedicionResponse.java

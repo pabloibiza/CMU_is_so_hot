@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author oscar
+ * @author Pablo
  */
 public class UltimaMedicion {
     

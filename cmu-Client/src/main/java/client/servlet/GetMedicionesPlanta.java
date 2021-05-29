@@ -23,7 +23,7 @@ import javax.xml.ws.WebServiceRef;
 
 /**
  *
- * @author oscar
+ * @author Oscar
  */
 @WebServlet(name = "GetMedicionesPlanta", urlPatterns = {"/getMedicionesPlanta"})
 public class GetMedicionesPlanta extends HttpServlet {
@@ -69,17 +69,7 @@ public class GetMedicionesPlanta extends HttpServlet {
         }
         System.out.println("HOLA USUARIO");
         String planta = usuarioSesion.getPlanta();
-        
-        System.out.println("TENGO LA `PLANTA");
-        if (planta.equals("1")) {
-            planta = "Primera";
-        } else if (planta.equals("2")) {
-            planta = "Segunda";
-        } else if (planta.equals("3")) {
-            planta = "Tercera";
-        }
-        
-        
+               
 
         try { // Call Web Service Operation
             CMUService port = service_1.getCMUServicePort();
@@ -95,8 +85,7 @@ public class GetMedicionesPlanta extends HttpServlet {
 
         session.setAttribute(
                 "listamedicionesplanta", listamedicionesplanta);
-        response.sendRedirect(
-                "pantallatemperaturasusuarios.jsp");
+        response.sendRedirect(response.encodeRedirectURL("pantallatemperaturasusuarios.jsp"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

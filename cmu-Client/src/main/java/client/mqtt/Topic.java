@@ -7,20 +7,21 @@ package client.mqtt;
 
 /**
  *
- * @author fserna, pablo
+ * @author  Pablo
  */
 public class Topic {
 
     // to subscribe
-    public static final String TOPIC_SONOFF_STAT_POWER = "/cmu/stat/sonoff/POWER";
-    public static final String TOPIC_RASPI_MEDICION    = "/cmu/raspi/medicion";
+    //public static final String TOPIC_SONOFF_STAT_POWER = "/cmu/stat/sonoff/POWER";
+    public static final String TOPIC_RASPI_MEDICION = "/cmu/raspi/medicion";
+    public static final String TOPIC_SONOFF_STAT_PLANTA_1 = "/cmu/stat/sonoff/1/POWER";
+    public static final String TOPIC_SONOFF_STAT_PLANTA_2 = "/cmu/stat/sonoff/2/POWER";
+    public static final String TOPIC_SONOFF_STAT_PLANTA_3 = "/cmu/stat/sonoff/3/POWER";
 
     // to publish
-    public static final String TOPIC_SONOFF_CMND_POWER  = "/cmu/cmnd/sonoff/POWER";
-    
+    public static final String TOPIC_SONOFF_CMND_POWER = "/cmu/cmnd/sonoff/*/POWER";
+
     // topic de testamento
-    public static final String TOPIC_APP_MQTT_LASTWILL  = "/stw/fs/thatsAllFolks";
-    
-    
-    
+    public static final String TOPIC_APP_MQTT_LASTWILL = "/stw/fs/thatsAllFolks";
+
 }

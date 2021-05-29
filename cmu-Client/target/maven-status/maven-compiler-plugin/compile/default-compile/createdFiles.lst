@@ -9,8 +9,8 @@ client\jaxws\RemoveUsuario.class
 client\jaxws\RemoveUsuarioResponse.class
 client\jaxws\AddUsuario.class
 client\jaxws\GetNumUsuarioResponse.class
-client\ejb\Sonoff.class
 client\jaxws\AddUsuarioResponse.class
+client\ejb\MedicionTermometro.class
 client\jaxws\GetNumUsuario.class
 client\servlet\EditUsuario.class
 client\jaxws\AddHabitacion.class
@@ -22,6 +22,7 @@ client\jaxws\CMUService_Service.class
 client\ListarUsuarios.class
 client\jaxws\Usuario.class
 client\jaxws\GetUsuarioLoginResponse.class
+client\ejb\Termostato.class
 client\jaxws\ObjectFactory.class
 client\servlet\EliminarMedicion.class
 client\jaxws\GetUsuarios.class
@@ -55,7 +56,6 @@ client\jaxws\GetUsuario.class
 client\jaxws\GetHabitacionResponse.class
 client\servlet\GetMedicionesPlanta.class
 client\servlet\EliminarUsuario.class
-client\ejb\Raspberry.class
 client\jaxws\EditUsuario.class
 client\servlet\Login.class
 client\jaxws\AddMedicion.class

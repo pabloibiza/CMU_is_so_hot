@@ -22,10 +22,10 @@ import javax.xml.ws.WebServiceRef;
 
 /**
  *
- * @author fsern, pablo
+ * @author Pablo
  */
 @Stateless
-public class Raspberry {
+public class MedicionTermometro {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
     private CMUService_Service service;
@@ -66,29 +66,10 @@ public class Raspberry {
     public void setFecha(GregorianCalendar fecha) {
         this.fecha = fecha;
     }
-
-    /*
-    public void parsearEntrada(String entrada) {
-        Scanner sc = new Scanner(entrada).useDelimiter(";");
-
-        setHabitacion(sc.next());
-        System.out.println("LA HABITACION ES: " + getHabitacion());
-        setTemp(sc.next());
-        System.out.println("LA TEMPERATURA ES: " + getTemp());
-        setPress(sc.next());
-        System.out.println("LA PRESION ES: " + getPress());
-        String fecha_sin_parsear = sc.next();
-        System.out.println(fecha_sin_parsear);
-        setFecha(parsearFecha(fecha_sin_parsear));
-        System.out.println("LA FECHA ES: " + getFecha().toString());
-
-    }
-     */
-
  
     public void enviarMedicion() throws DatatypeConfigurationException {
         GregorianCalendar date = new GregorianCalendar();
-        String planta="";
+        
         setFecha(date);
         Medicion medicion = new Medicion();
         medicion.setTemperatura(this.getTemp());
@@ -96,14 +77,7 @@ public class Raspberry {
         medicion.setHabitacion(this.getHabitacion());
         
         String[] piso = this.getHabitacion().split("");
-        
-        if(piso[0].equals("1")){
-            planta = "Primera";
-        } else if (piso[0].equals("2")){
-            planta = "Segunda";
-        } else if (piso[0].equals("3")){
-            planta = "Tercera";
-        }
+         String planta=piso[0];     
         
         medicion.setPlanta(planta);
 

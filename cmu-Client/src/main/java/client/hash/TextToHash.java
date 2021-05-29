@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author oscar
+ * @author Pablo
  */
 public class TextToHash {
 

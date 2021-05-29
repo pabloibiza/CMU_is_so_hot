@@ -1,19 +1,17 @@
 <%-- 
     Document   : index
     Created on : 13-abr-2021, 17:27:13
-    Author     : Usuario
+    Author     : Carlos
 --%>
 
 <!DOCTYPE html>
 <html>
     <%
-        String msg = (String) session.getAttribute("msg");
-        String login = (String) session.getAttribute("login");
         
-        if (login != null){
-            response.sendRedirect("pantallainiciousuariosnormales.jsp");
-        }
-
+        HttpSession misession = (HttpSession) request.getSession();
+        String msg = (String) session.getAttribute("msg");
+        session.setAttribute("login", null);
+        session.setAttribute("admin", null);
     %>
     <head>
         <style>
@@ -319,24 +317,24 @@
     <body>
         <div class="wrapper fadeInDown">
             <div id="formContent">
-                
+
                 <!-- Tabs Titles -->
-                <h2 class="active"> Iniciar Sesion </h2>
+                <h2 class="active">Iniciar Sesion </h2>
                 <h5> Solo podrán iniciar sesion los usuarios dados de alta por el administrador </h5>
 
                 <!-- Login Form -->
                 <form method="POST" action="<%=response.encodeURL("login")%>">
                     <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario">
-                    
+
                     <input type="password" id="pass" class="fadeIn third" name="pass" placeholder="contraseña">
-                    
+
                     <%  if (msg != null) {%>
                     <div style="background-color: red; color:white; font-weight: bold"><%=msg%></div>
                     <%
                             session.setAttribute("msg", null);
-                        }  
+                        }
                     %>
-                   
+
                     <br>
                     <input type="submit" class="fadeIn fourth" value="Iniciar Sesion">
                 </form>

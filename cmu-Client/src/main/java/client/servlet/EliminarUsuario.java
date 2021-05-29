@@ -19,7 +19,7 @@ import javax.xml.ws.WebServiceRef;
 
 /**
  *
- * @author oscar
+ * @author Oscar
  */
 @WebServlet(name = "EliminarUsuario", urlPatterns = {"/eliminarUsuario"})
 public class EliminarUsuario extends HttpServlet {

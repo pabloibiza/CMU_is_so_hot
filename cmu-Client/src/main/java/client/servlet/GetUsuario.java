@@ -23,7 +23,7 @@ import javax.xml.ws.WebServiceRef;
 
 /**
  *
- * @author oscar
+ * @author Oscar
  */
 @WebServlet(name = "GetUsuario", urlPatterns = {"/getUsuario"})
 public class GetUsuario extends HttpServlet {
@@ -66,7 +66,8 @@ public class GetUsuario extends HttpServlet {
 
         ListarUsuarios listaPerfil = new ListarUsuarios(usuarios);
         session.setAttribute("listaPerfil", listaPerfil);
-        response.sendRedirect("editarPerfil.jsp");
+        
+        response.sendRedirect(response.encodeRedirectURL("editarPerfil.jsp"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

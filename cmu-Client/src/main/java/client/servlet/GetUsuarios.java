@@ -26,7 +26,7 @@ import javax.xml.ws.WebServiceRef;
 
 /**
  *
- * @author oscar
+ * @author Oscar
  */
 @WebServlet(name = "GetUsuarios", urlPatterns = {"/getUsuarios"})
 public class GetUsuarios extends HttpServlet {
@@ -66,7 +66,8 @@ public class GetUsuarios extends HttpServlet {
        
         ListarUsuarios listausuarios = new ListarUsuarios(usuarios);
         session.setAttribute("listausuarios", listausuarios);
-        response.sendRedirect("pantallaregistrousuarios.jsp");
+        
+        response.sendRedirect(response.encodeRedirectURL("pantallaregistrousuarios.jsp"));
 
     }
 

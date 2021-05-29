@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author oscar
+ * @author Oscar
  */
 public class ListarUsuarios {
     List<Usuario> usuarios = new ArrayList();

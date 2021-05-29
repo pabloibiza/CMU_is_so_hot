@@ -9,18 +9,28 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author fsern
+ * @author  Pablo
  */
 @Stateless
-public class Sonoff {
+public class Termostato {
+
     private Boolean estado = false;
+    private Boolean primerEncendido = true;
 
     public Boolean getEstado() {
         return estado;
     }
 
+    public Boolean esPrimerEncendido() {
+        return primerEncendido;
+    }
+
+    public void setPrimerEncendido(Boolean estado) {
+        primerEncendido = estado;
+    }
+
     public void setEstado(Boolean _estado) {
         this.estado = _estado;
     }
-    
+
 }

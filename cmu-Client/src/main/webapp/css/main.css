@@ -25,6 +25,7 @@
 body, html {
 	height: 100%;
 	font-family: sans-serif;
+        background-color: #DCF9E4;
 }
 
 /* ------------------------------------ */
@@ -202,16 +203,16 @@ iframe {
 }
 
 .row .cell:nth-child(1) {
-  width: 100px;
+  width: 50px;
   padding-left: 40px;
 }
 
 .row .cell:nth-child(2) {
-  width: 160px;
+  width: 260px;
 }
 
 .row .cell:nth-child(3) {
-  width: 260px;
+  width: 130px;
 }
 
 .row .cell:nth-child(4) {

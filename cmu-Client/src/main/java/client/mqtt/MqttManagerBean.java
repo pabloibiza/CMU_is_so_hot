@@ -21,7 +21,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 /**
  *
- * @author fsern, pablo
+ * @author Pablo
  */
 @Stateless
 public class MqttManagerBean {
@@ -69,19 +69,13 @@ public class MqttManagerBean {
     }
     
     
-    
-        
-    /**
-     * Debe invocarse al arrancar la app, para que se establezca la conexión
-     * con el broker MQTT.
-     */
     public void connectToMqttBroker (){
         if (mqttListener==null){
             mqttListener = new MqttListener();
         }
         try {
             String randomId = mqttSessionPrefix+"_"+String.valueOf(Math.random()).substring(2, 16);
-            System.out.println("Connecting to MQTT broker: '"+this.mqttBroker+"' with ID: '"+randomId+"'");
+           
             if (mqttClient==null){
                 mqttClient = new MqttClient (this.mqttBroker, randomId, persistence);
             }

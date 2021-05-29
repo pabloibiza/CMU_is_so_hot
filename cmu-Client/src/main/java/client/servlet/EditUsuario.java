@@ -9,8 +9,10 @@ import client.hash.TextToHash;
 import client.jaxws.CMUService;
 import client.jaxws.CMUService_Service;
 import client.jaxws.Usuario;
+import client.websocket.WebSocketManager;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.annotation.PostConstruct;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,13 +23,15 @@ import javax.xml.ws.WebServiceRef;
 
 /**
  *
- * @author oscar
+ * @author Oscar
  */
 @WebServlet(name = "EditUsuario", urlPatterns = {"/editUsuario"})
 public class EditUsuario extends HttpServlet {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/155.210.71.106_8080/CMU_server/CMUService.wsdl")
     private CMUService_Service service;
+
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -77,7 +81,8 @@ public class EditUsuario extends HttpServlet {
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
-        response.sendRedirect("pantallaregistrousuarios.jsp");
+
+        response.sendRedirect(response.encodeRedirectURL("pantallaregistrousuarios.jsp"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

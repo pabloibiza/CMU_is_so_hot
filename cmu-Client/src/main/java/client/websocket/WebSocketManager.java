@@ -24,7 +24,7 @@ import javax.websocket.server.ServerEndpoint;
 
 /**
  *
- * @author oscar
+ * @author Oscar
  */
 @ServerEndpoint("/usuario")
 public class WebSocketManager {
@@ -42,11 +42,6 @@ public class WebSocketManager {
         return moiMeme;
     }
 
-    /**
-     * @OnOpen allows us to intercept the creation of a new session. The session
-     * class allows us to send data to the user. In the method onOpen, we'll let
-     * the user know that the handshake was successful.
-     */
     @OnOpen
     public void onOpen(Session _session) {
         System.out.println("On open" + sessions.size());
@@ -54,8 +49,7 @@ public class WebSocketManager {
     }
 
     @OnMessage
-    public String onMessage(String message) {
-        // broadcast del mensaje recibido
+    public String onMessage(String message) {   
         for (Session s : sessions) {
 
             s.getAsyncRemote().sendText(message);
@@ -64,11 +58,7 @@ public class WebSocketManager {
         return null;
     }
 
-    /**
-     * The user closes the connection.
-     *
-     * Note: you can't send messages to the client from this method
-     */
+    
     @OnClose
     public void onClose(Session _session) {
         System.out.println("On close " + sessions.size() );

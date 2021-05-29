@@ -27,7 +27,8 @@ import javax.xml.ws.WebServiceRef;
 
 /**
  *
- * @author oscar
+ * @author Oscar
+ * 
  */
 @WebServlet(name = "AddUsuario", urlPatterns = {"/addUsuario"})
 public class AddUsuario extends HttpServlet {
@@ -42,7 +43,7 @@ public class AddUsuario extends HttpServlet {
         websocket = WebSocketManager.getInstance();
     }
 
-    private boolean administrador;
+   
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,12 +58,15 @@ public class AddUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(true);
-
+        boolean administrador = false;
+        
         String nombre = request.getParameter("nombre");
         String contrasena = request.getParameter("contrasena");
         String planta = request.getParameter("planta");
         String tipoUsuario = request.getParameter("tipoUsuario");
         List<Usuario> usuarios = null;
+        String msj = "";
+        
 
         if (tipoUsuario.equals("administrador")) {
             administrador = true;
@@ -84,9 +88,14 @@ public class AddUsuario extends HttpServlet {
         } catch (Exception ex) {
             // TODO handle custom exceptions here
         }
-
-        String msj = "<tr><td>" + nombre + "</td><td>" + planta
-                + "</td><td>" + administrador + "</td><td><a href=\"#\"><b>Eliminar</b></td></tr>";
+        if(administrador){
+             msj = "<tr><td>" + nombre + "</td><td></td><td>" + planta
+                + "</td><td></td><td>Administrador</td><td></td><td><a href=\"<%=response.encodeURL(\"editarPerfil.jsp?id=\" + u.getId())%>\">Editar</a></td><td></td><td><a href=\"#\">Eliminar</td></tr>";
+        } else if (!administrador){
+             msj = "<tr><td>" + nombre + "</td><td></td><td>" + planta
+                + "</td><td></td><td>Normal</td><td></td><td><a href=\"<%=response.encodeURL(\"editarPerfil.jsp?id=\" + u.getId())%>\">Editar</a></td><td></td><td><a href=\"#\">Eliminar</td></tr>";
+        }
+        
 
         System.out.println(msj);
 
@@ -94,7 +103,7 @@ public class AddUsuario extends HttpServlet {
             websocket.sendMensaje(msj);
         }
 
-        response.sendRedirect("pantallaregistrousuarios.jsp");
+        response.sendRedirect(response.encodeRedirectURL("pantallaregistrousuarios.jsp"));
 
     }
 

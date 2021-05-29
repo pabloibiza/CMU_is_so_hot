@@ -1,7 +1,6 @@
-
 package client.servlet;
 
-import client.ejb.Sonoff;
+import client.ejb.Termostato;
 import client.mqtt.MqttManagerBean;
 
 import client.mqtt.Topic;
@@ -15,17 +14,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author fsern, pablo
+ * @author Pablo
  */
 @WebServlet(name = "SwitchSonoff", urlPatterns = {"/switchSonoff"})
 public class SwitchSonoff extends HttpServlet {
 
-    @EJB MqttManagerBean mqttManager;
-    @EJB Sonoff sonoff;
-    
+    @EJB
+    MqttManagerBean mqttManager;
+    @EJB
+    Termostato termostato;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -37,16 +39,25 @@ public class SwitchSonoff extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, InterruptedException {
+        request.setCharacterEncoding("UTF-8");
+        HttpSession session = request.getSession(true);
 
-        String comando   = request.getParameter("comando");
-
-        if (comando!=null){
-            mqttManager.publish(Topic.TOPIC_SONOFF_CMND_POWER, comando, false);  
+        String comando = request.getParameter("comando");
+        if (comando.equals("STATE")) {
+            String topic_estado;
+            topic_estado = Topic.TOPIC_SONOFF_CMND_POWER.replace("*", "2");
+            System.out.println("--------------------------------------------------------------------TOPIC ESTADO: " + topic_estado);
+            mqttManager.publish(topic_estado, "", false);
+        } else if (!comando.equals("STATE") && comando != null) {
+            String topic_power;
+            topic_power = Topic.TOPIC_SONOFF_CMND_POWER.replace("*", "2");
+            System.out.println("--------------------------------------------------------------------TOPIC POWER: " + topic_power);
+            mqttManager.publish(topic_power, comando, false);
         }
-        
+
         sleep(300);
-        response.sendRedirect(response.encodeURL("ultimamedicion.jsp"));
-        
+        response.sendRedirect(response.encodeURL("pantallaControlCalefaccion.jsp"));
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
