@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 
 /**
  *
- * @author karlo
+ * @author Carlos
  */
 @Entity
 public class Medicion implements Serializable {

@@ -11,8 +11,6 @@ import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import servidor.bd.HabitacionFacade;
-import servidor.bd.Habitacion;
 import servidor.bd.Medicion;
 import servidor.bd.MedicionFacade;
 import servidor.bd.Usuario;
@@ -20,7 +18,7 @@ import servidor.bd.UsuarioFacade;
 
 /**
  *
- * @author karlo
+ * @author Carlos
  */
 @WebService(serviceName = "CMUService")
 
@@ -28,7 +26,6 @@ public class CMUService {
 
     @EJB UsuarioFacade us;
     @EJB MedicionFacade med;
-    @EJB HabitacionFacade hab;
     
     @WebMethod(operationName = "addUsuario")
     public void addUsuario(@WebParam(name = "usuario") Usuario usuario) {
@@ -128,38 +125,7 @@ public class CMUService {
         }
         return mediciones;
     }
-    
-    @WebMethod(operationName = "addHabitacion")
-    public void addHabitacion(@WebParam(name = "habitacion") Habitacion habitacion) {
-       hab.create(habitacion);
-    }
         
-    @WebMethod(operationName = "getHabitacion")
-    public Habitacion getHabitacion(@WebParam(name = "id") Long id) {
-        Habitacion h = null;
-        h = hab.find(id);
-        return h;
-    }
-    
-    @WebMethod(operationName = "editHabitacion")
-    public void editHabitacion(@WebParam(name = "habitacion") Habitacion habitacion) {
-        hab.edit(habitacion);
-    }
-    
-    @WebMethod(operationName = "removeHabitacion")
-    public void removeHabitacion(@WebParam(name = "habitacion") Habitacion habitacion) {
-        hab.remove(habitacion);
-    }
-    
-    @WebMethod(operationName = "getHabitaciones")
-    public List<Habitacion> getHabitaciones() {
-        List<Habitacion> habitacion = hab.findAll();
-        if (habitacion==null){
-            habitacion = new ArrayList();
-        }
-        return habitacion;
-    }
-    
     /**
      * This is a sample web service operation
      */
